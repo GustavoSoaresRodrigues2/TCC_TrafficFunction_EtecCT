@@ -447,9 +447,20 @@ table a, #comments a{background-color:inherit;}
 }
 
 #logo_top{
-	width: 250px;''
+	width: 250px;
 }
 
 .heading{
 	text-transform: unset;
+}
+
+.overview article img {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50px;
+    overflow: hidden;
+    line-height: 1;
+    font-size: 36px;
 }
