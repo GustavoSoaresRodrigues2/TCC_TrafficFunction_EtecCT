@@ -464,3 +464,14 @@ table a, #comments a{background-color:inherit;}
     line-height: 1;
     font-size: 36px;
 }
+
+.logar {
+	align-items: center;
+	justify-content: center;
+	display: flex;
+	flex-direction: column;
+}
+
+.espaco {
+	padding: 20px;
+}
