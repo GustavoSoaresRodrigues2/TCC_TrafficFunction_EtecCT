@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <!--
 Template Name: Oleald
 Author: <a href="https://www.os-templates.com/">OS Templates</a>
@@ -7,14 +6,16 @@ Author URI: https://www.os-templates.com/
 Licence: Free to use under our free template licence terms
 Licence URI: https://www.os-templates.com/template-terms
 -->
-
 <html lang="br">
 
 <!-- To declare your language - read more here: https://www.w3.org/International/questions/qa-html-language-declarations -->
 
 <head>
 <title>TrafficFunction</title>
-<meta charset="utf-8">  
+<meta charset="utf-8">
+<meta name="author" content="TrafficFunction">
+<meta name="description" content="Site para divilguar nossa empresa">
+<meta name="keywords" content="transito, semaforos, html">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
 </head>
@@ -37,8 +38,8 @@ Licence URI: https://www.os-templates.com/template-terms
       <div class="fl_right"> 
         <ul class="nospace">
           <li><a href="index.html"><i class="fa fa-lg fa-home"></i></a></li>
-          <li><a href="#" title="Login"><i class="fa fa-lg fa-sign-in"></i></a></li>
-          <li><a href="#" title="Sign Up"><i class="fa fa-lg fa-edit"></i></a></li>
+          <li><a href="sitemalogin/form_login.html" title="Login"><i class="fa fa-lg fa-sign-in"></i></a></li>
+          <li><a href="sitemalogin/form_cadastro.html" title="Cadastrar"><i class="fa fa-lg fa-edit"></i></a></li>
         </ul>
       </div>
     </div>
@@ -58,29 +59,32 @@ Licence URI: https://www.os-templates.com/template-terms
       <nav id="mainav" class="fl_right">
         <ul class="clear">
 
+          <li><a href="index.html">Home</a></li>
+
           <!-- Parte Guia -->
-          <li><a class="drop" href="#">Guias</a>
+          <li><a class="drop" href="pages/empresa.html">Guias</a>
             <ul>
-              <li><a href="pages/full-width.html">Nosso App</a></li>
-              <li><a href="pages/sidebar-left.html">Mapa de inflações</a></li>
-              <li><a href="pages/sidebar-right.html">Comentários</a></li>
+              <li><a href="pages/empresa.html">Quem Somos?</a></li>
+              <li><a href="pages/empresa.html">Nosso App</a></li>
+              <li><a href="pages/empresa.html">Mapa de inflações</a></li>
+              <li><a href="pages/empresa.html">Comentários</a></li>
             </ul>
           </li>
           <!-- /Parte Guia -->
 
           <!-- Parte Cadastro -->
-          <li><a class="drop" href="#">Cadastro</a>
+          <li><a class="drop" href="sitemalogin/form_login.html">Conta</a>
             <ul>
-              <li><a href="pages/full-width.html">Login</a></li>
-              <li><a href="pages/sidebar-left.html">Cadastrar</a></li>
-              <li><a href="pages/sidebar-right.html">Sair da Conta</a></li>
+              <li><a href="sitemalogin/form_login.html">Login</a></li>
+              <li><a href="sitemalogin/form_cadastro.html">Cadastrar</a></li>
+              <li><a href="sitemalogin/logoff.php">Sair da Conta</a></li>
             </ul>
           </li>
           <!-- /Parte Cadastro -->
 
           
-          <li><a href="pages/full-width.html">Nosso Serviços</a></li>
-          <li><a href="pages/sidebar-left.html">Suporte</a></li>
+          <li><a href="pages/empresa.html">Nosso Serviços</a></li>
+          <li><a href="pages/empresa.html">Suporte</a></li>
         </ul>
       </nav>
     </header>
@@ -92,7 +96,8 @@ Licence URI: https://www.os-templates.com/template-terms
       <h3 class="heading">TrafficFunction<br>
         A luz do trânsito</h3>
       <p><h2>Iluminando o seu caminho pelo trânsito.</h2></p>
-      <footer><a class="btn" href="sitemalogin/form_login.html">Login</a></footer>
+      <footer><a class="btn" href="sitemalogin/form_login.html">Login</a> <a class="btn" href="sitemalogin/form_cadastro.html">Cadastrar-se</a></footer>
+      
     </article>
   </div>
 </div>
@@ -168,12 +173,12 @@ Licence URI: https://www.os-templates.com/template-terms
       <li class="one_third"><img src="images/demo/320x418.png"></li>
       <li class="one_third"><img src="images/demo/320x418.png"></li>
     </ul>
-    <footer class="center"><a class="btn" href="#">Elit vitae convallis</a></footer>
+    <footer class="center"><a class="btn" href="#">Conferir</a></footer>
   </figure>
 </div>
 <!-- /Mostrando multas -->
 
-
+<!-- SEM USO NO MOMENTO
 <div class="wrapper row2 bgded overlay" style="background-image:url('images/demo/backgrounds/03.png');">
   <section class="hoc container clear testimonials"> 
     <div class="sectiontitle">
@@ -201,7 +206,6 @@ Licence URI: https://www.os-templates.com/template-terms
     <footer class="center"><a class="btn" href="#">View More &raquo;</a></footer>
   </section>
 </div>
-
 
 
 <div class="wrapper">
@@ -241,20 +245,21 @@ Licence URI: https://www.os-templates.com/template-terms
     </div>
     <footer class="center"><a class="btn" href="#">Convallis ultricies &raquo;</a></footer>
   </section>
-</div>
+</div> 
+      -->
 
 
 <div class="wrapper row2 bgded overlay" style="background-image:url('images/demo/backgrounds/04.png');">
   <section class="hoc cta clear"> 
     <div class="sectiontitle">
-      <h6 class="heading">Condimentum ullamcorper vehicula</h6>
-      <p>Velit vel pulvinar elit feugiat vel vivamus venenatis nunc ac</p>
+      <h6 class="heading">Se Mantenha atualizado</h6>
+      <p>Forneça um contato para receber nóticias e atualizações do nosso site</p>
     </div>
     <form method="post" action="#">
       <fieldset>
         <legend>Newsletter:</legend>
-        <input class="btmspace-15" type="text" value="" placeholder="Enter Your Email Here&hellip;">
-        <button type="submit" value="submit">Submit</button>
+        <input class="btmspace-15" type="text" value="" placeholder="Insira seu contato aqui"&hellip;>
+        <button type="submit" value="submit">Enviar</button>
       </fieldset>
     </form>
   </section>
@@ -268,7 +273,7 @@ Licence URI: https://www.os-templates.com/template-terms
       <h6 class="heading">Balelela balela</h6>
       <p>Balelelea laleleela blblblalalal lalalal.</p>
       <p>Baelelealeal laldlaldale &hellip;</p>
-      <p class="nospace"><a href="#">Read More</a></p>
+      <p class="nospace"><a href="#">Ler mais</a></p>
     </article>
     <div class="one_third">
       <h6 class="heading">Nossos Contatos</h6>
@@ -289,13 +294,13 @@ Licence URI: https://www.os-templates.com/template-terms
       </ul>
     </div>
     <div class="one_quarter">
-      <h6 class="heading">Sei la</h6>
+      <h6 class="heading">Nossos serviços</h6>
       <ul class="nospace linklist">
-        <li><a href="#">Link Text 1</a></li>
-        <li><a href="#">Link Text 2</a></li>
-        <li><a href="#">Link Text 3</a></li>
-        <li><a href="#">Link Text 4</a></li>
-        <li><a href="#">Link Text 5</a></li>
+        <li><a href="#">App Mobile</a></li>
+        <li><a href="#">Mapa</a></li>
+        <li><a href="#">Comentarios</a></li>
+        <li><a href="#">Nossa Empresa</a></li>
+        <li><a href="#">Suporte</a></li>
       </ul>
     </div>
     <!-- ################################################################################################ -->
