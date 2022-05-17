@@ -10,14 +10,14 @@ Licence URI: https://www.os-templates.com/template-terms
 <!-- To declare your language - read more here: https://www.w3.org/International/questions/qa-html-language-declarations -->
 
 <head>
-<title>TF | Login</title>
+<title>TF | Cadastro</title>
 <meta charset="utf-8">
 <meta name="author" content="TrafficFunction">
 <meta name="description" content="Site para divilguar nossa empresa">
 <meta name="keywords" content="transito, semaforos, html">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
-<style>
+<style type="text/css">
 
 /* DEMO ONLY */
 .container .demo{text-align:center;}
@@ -26,33 +26,14 @@ Licence URI: https://www.os-templates.com/template-terms
 .container .demo div:nth-child(even){color:#FFFFFF; background:#979797;}
 @media screen and (max-width:900px){.container .demo div{margin-bottom:0;}}
 /* DEMO ONLY */
-
-body{
-  font-family: Arial, Helvetica, sans-serif;
-}
-.form_login{
-  background-color: black;
-  width: 300px;
-  height: 400px;
-  margin-right: auto;
-  margin-left: auto;
-  padding: 80px;
-  border-radius: 15px;
-  color: #FFFFFF;
-}
-input{
-  padding: 15px;
-  border: none;
-  outline: none;
-}
-
 </style>
 
 </head>
 
 <body id="top">
-
-<div class="bgded overlay light" style="background-image:url('../images/backgrounds/background_home.jpeg');"> 
+<!-- Top Background Image Wrapper -->
+<div class="bgded overlay light" style="background-image:url('../images/backgrounds/background_home.jpeg');">
+  
   <div class="wrapper row0">
     <div id="topbar" class="hoc clear"> 
 
@@ -89,7 +70,7 @@ input{
       </div>
       <nav id="mainav" class="fl_right">
         <ul class="clear">
-
+          
           <li><a href="../index.html">Home</a></li>
 
           <!-- Parte Guia -->
@@ -120,11 +101,12 @@ input{
     </header>
   </div>
   <!-- /NavBar -->
+
   <div id="breadcrumb" class="hoc clear"> 
     <!-- ################################################################################################ -->
     <ul>
       <li><a href="../index.html">Home</a></li>
-      <li><a href="#">Login</a></li>
+      <li><a href="#">Cadastrar</a></li>
     </ul>
     <!-- ################################################################################################ -->
   </div>
@@ -134,33 +116,50 @@ input{
 <div class="wrapper row3">
   <main class="hoc container clear"> 
     <div class="content">
-      <h1>| LOGUE AGORA!!!</h1>
+      <h1>| CADASTRA-SE AGORA!!!</h1>
       <!-- <img class="imgr borderedbox inspace-5" src="../images/demo/imgr.gif" alt=""> -->
       <p>Qualquer visitante do nosso site tem acesso aos mais diversos assuntos sobre o transito. Mas apenas aqueles que criam uma conta podem verdadeira mente fazer a diferença!</p>
       <p>você também pode se interessar em <a href="#">nosso App</a> muito simples e prático de usar.</p>
-
-      <!-- Form Login -->
-      <div class="espaco">
-      <div class="form_login">
-        <h1>LOGIN</h1>
-        <form class="logar" method="POST" action="bd_inserir_form.php">
-          <input type="text" name="CPF" placeholder="CPF">
-          </br>
-          <input type="text" name="email" placeholder="E-mail">
-          </br>
-          <input type="password" name="senha_Usuario" placeholder="Senha">
-          </br>
-          <input class="btn" type="submit" value="LOGIN">
-          
-        <div class="espaco">
+    </br>
+      <!-- Form Cadastro -->
+      <div id="comments">
+      <h2>Formulario de Cadastro</h2>
+        <form action="#" method="post" > 
+          <div class="one_third first">
+            <label for="name">Nome <span>*</span></label>
+            <input type="text" name="nome" id="nome" placeholder="Fulanin" value="" size="22" required>
+          </div>
+          <div class="one_third">
+            <label for="telefone">Telefone</label>
+            <input type="text" name="telefone" id="Telefone" placeholder="(DDD) 12345-1234" value="" size="22" required>
+          </div>
+          <div class="one_third first">
+            <label for="cpf">CPF <span>*</span></label>
+            <input type="text" name="cpf" id="CPF" value="" placeholder="Insira seu CPF" size="22" required>
+          </div>
+          <div class="one_third">
+            <label for="senha">Senha <span>*</span></label>
+            <input type="password" name="senha" id="senha" value="" placeholder="123 não pode" size="22" required>
+          </div>
+          <div class="block clear" style="width: 66%">
+            <label for="email">E-mail </label>
+            <input type="email" name="email" id="email" value="" placeholder="Insire seu E-mail aqui" size="22" required>
+          </div>
+          <!-- BOTOES -->
+          <div>
+            <input type="submit" name="submit" value="Cadastrar">
+            &nbsp;
+            <input type="reset" name="reset" value="Limpar">
+          </div>
+          <!-- /BOTOES -->
+        </form>
       </div>
-      <!-- /Formulario Login -->
+      <!-- /Form Cadastro -->
     </div>
   </main>
 </div>
-
 <!-- ################################################################################################ -->
-<div class="wrapper row2 bgded overlay" style="background-image:url('../images/demo/backgrounds/04.png');">
+<div class="wrapper row2 bgded overlay" style="background-image:url('../images/backgrounds/background_servicos.jpg');">
   <section class="hoc cta clear"> 
     <!-- ################################################################################################ -->
     <div class="sectiontitle">
@@ -180,7 +179,7 @@ input{
 
 <!-- FOOTER -->
 <div class="wrapper row4">
-  <footer id="footer" class="hoc clear"> 
+  <footer id="footer" class="hoc clear">
     <!-- ################################################################################################ -->
     <article class="one_third first">
       <h6 class="heading">Balelela balela</h6>
