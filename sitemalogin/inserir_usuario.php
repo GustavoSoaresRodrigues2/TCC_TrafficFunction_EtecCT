@@ -1,57 +1,68 @@
+<?php 
+	//Conexão com o Banco de Dados
+	require "conectar.php";
+
+	//Recupera os dados dos campos
+	$nome = $_POST['Nome'];
+        $cpf = $_POST['CPF'];
+        $email = $_POST['Email'];
+	$telefone = $_POST['Telefone'];
+	$senha = $_POST['Senha'];
+
+	//Insere os dados no banco
+	$sql = mysqli_query($conexao, "INSERT INTO tbl_TF_Usuario VALUES ('', '".$nome."', '".$cpf."', '".$email."', '".$telefone."', '".$senha."')");
+
+	//Se os dados forem inseridos com sucesso
+	if ($sql) {
+		$msg = "Você foi cadastrado com sucesso!";
+	}	else {
+			$msg = "Houve um erro! Veja o último usuario cadastrado com sucesso.";
+		}
+?>
 <!DOCTYPE html>
-<!--
-Template Name: Oleald
-Author: <a href="https://www.os-templates.com/">OS Templates</a>
-Author URI: https://www.os-templates.com/
-Licence: Free to use under our free template licence terms
-Licence URI: https://www.os-templates.com/template-terms
--->
-<html lang="br">
-<!-- To declare your language - read more here: https://www.w3.org/International/questions/qa-html-language-declarations -->
+<html>
+	<head>
+		<TITLE>TF | Cadastrando</TITLE>
+		<META charset="UTF-8">
+    <meta name="author" content="TrafficFunction">
+    <meta name="description" content="Site para divilguar nossa empresa">
+    <meta name="keywords" content="transito, semaforos, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
+		  		<style>
+                        table {
+                          font-size: 20px;
+                          margin: 0 auto;
+                          width: 70%;
+                          padding: 0px;
+                          margin-bottom: 10%;
+                          color: black;
+                        }
+                        table tr {
+                          word-spacing: 5px;
+                          padding: 0;
+                          margin: 0;
+                          background-color: #54FF9F;
+                        }
+                        table td {
+                          padding: 5px 15px;
+                        }
+                        table tr:nth-child(1) {
+                          padding: 0;
+                          text-align: center;
+                        }
+                        table tr:nth-child(1) td {
+                          background: #0c2e8a;
+                          color: white;
+                        }
+          </style>
+	</head>
 
-<head>
-<title>TF | Login</title>
-<meta charset="utf-8">
-<meta name="author" content="TrafficFunction">
-<meta name="description" content="Site para divilguar nossa empresa">
-<meta name="keywords" content="transito, semaforos, html">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<link href="../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
-<style>
+	<body id="top">
 
-/* DEMO ONLY */
-.container .demo{text-align:center;}
-.container .demo div{padding:8px 0;}
-.container .demo div:nth-child(odd){color:#FFFFFF; background:#CCCCCC;}
-.container .demo div:nth-child(even){color:#FFFFFF; background:#979797;}
-@media screen and (max-width:900px){.container .demo div{margin-bottom:0;}}
-/* DEMO ONLY */
-
-.form_login{
-  background-color: black;
-  width: 30%;
-  height: 350px;
-  margin-right: auto;
-  margin-left: auto;
-  padding: 80px;
-  border-radius: 15px;
-}
-.form_login input{
-  padding: 15px;
-  border: none;
-  outline: none;
-}
-.form_login h1{
-  color: #FFFFFF;
-  text-align: center;
-}
-</style>
-
-</head>
-
-<body id="top">
-
-<div class="bgded overlay light" style="background-image:url('../images/backgrounds/background_home.jpeg');"> 
+<!-- Top Background Image Wrapper -->
+<div class="bgded overlay light" style="background-image:url('../images/backgrounds/background_home.jpeg');">
+  
   <div class="wrapper row0">
     <div id="topbar" class="hoc clear"> 
 
@@ -88,7 +99,7 @@ Licence URI: https://www.os-templates.com/template-terms
       </div>
       <nav id="mainav" class="fl_right">
         <ul class="clear">
-
+          
           <li><a href="../index.html">Home</a></li>
 
           <!-- Parte Guia -->
@@ -119,63 +130,45 @@ Licence URI: https://www.os-templates.com/template-terms
     </header>
   </div>
   <!-- /NavBar -->
+
   <div id="breadcrumb" class="hoc clear"> 
     <!-- ################################################################################################ -->
     <ul>
       <li><a href="../index.html">Home</a></li>
-      <li><a href="#">Login</a></li>
+      <li><a href="#">Cadastrar</a></li>
     </ul>
     <!-- ################################################################################################ -->
   </div>
 </div>
 <!-- End Top Background Image Wrapper -->
 
-<div class="wrapper row3">
-  <main class="hoc container clear"> 
-    <div class="content">
-      <h1>| LOGUE AGORA!!!</h1>
-      <!-- <img class="imgr borderedbox inspace-5" src="../images/demo/imgr.gif" alt=""> -->
-      <p>Qualquer visitante do nosso site tem acesso aos mais diversos assuntos sobre o transito. Mas apenas aqueles que criam uma conta podem verdadeira mente fazer a diferença!</p>
-      <p>você também pode se interessar em <a href="#">nosso App</a> muito simples e prático de usar.</p>
+		<?php
+		echo "<h1 align='center'>$msg</h1>";
+		//Selecione todos os usuarios
+		$sql = mysqli_query($conexao, "SELECT * FROM tbl_TF_Usuario ORDER BY cod DESC limit 1");
 
-      <!-- Form Login -->
-      <div class="espaco">
-      <div class="form_login">
-        <h1>LOGIN</h1>
-        <form class="logar" method="post" action="login.php">
-          <input type="text" name="Email" placeholder="E-mail">
-          </br>
-          <input type="password" name="Senha" placeholder="Senha">
-          </br>
-          <input class="btn" type="submit" value="LOGAR">
-        </div>
-        <div class="espaco">
-      <!-- /Formulario Login -->
-    </div>
-  </main>
-</div>
+		//Exibe as informações de cada usuario
+		while ($usuario = mysqli_fetch_object($sql)) {
+		  //Exibimos as informações
+      echo "<table>";
+      echo "<tr><td><b>Seus Dados</b></td></tr>";
+      echo "<tr><td><b>Nome:</b> " . $usuario->Nome . "</td></tr>";
+      echo "<tr><td><b>CPF:</b> " . $usuario->CPF . "</td></tr>";
+      echo "<tr><td><b>E-mail:</b> " . $usuario->Email . "</td></tr>";
+      echo "<tr><td><b>Telefone:</b> " . $usuario->Telefone . "</td></tr>";
+      //echo "<tr><td><b>Codigo:</b> " . $cliente->codCliente . "</td></tr>";
+      echo "</table>";		
+    }
 
-<!-- ################################################################################################ -->
-<div class="wrapper row2 bgded overlay" style="background-image:url('../images/backgrounds/background_servicos.jpg');">
-  <section class="hoc cta clear"> 
-    <!-- ################################################################################################ -->
-    <div class="sectiontitle">
-      <h6 class="heading">Se Mantenha atualizado</h6>
-      <p>Forneça um contato diferente para receber nóticias e atualizações do nosso site</p>
-    </div>
-    <form method="post" action="#">
-      <fieldset>
-        <legend>Newsletter:</legend>
-        <input class="btmspace-15" type="text" value="" placeholder="Insira seu contato aqui"&hellip;>
-        <button type="submit" value="submit">Enviar</button>
-      </fieldset>
-    </form>
-    <!-- ################################################################################################ -->
-  </section>
-</div>
+			//Encerra conexão
+			require "desconectar.php";
 
-<!-- FOOTER -->
-<div class="wrapper row4">
+		?>
+
+				<!--==========================
+		    Footer
+		  ============================-->
+      <div class="wrapper row4">
   <footer id="footer" class="hoc clear"> 
     <!-- ################################################################################################ -->
     <article class="one_third first">
@@ -215,8 +208,9 @@ Licence URI: https://www.os-templates.com/template-terms
     <!-- ################################################################################################ -->
   </footer>
 </div>
-<!-- ################################################################################################ -->
-<div class="wrapper row5">
+		  <!-- #footer -->
+
+      <div class="wrapper row5">
   <div id="copyright" class="hoc clear"> 
     <!-- ################################################################################################ -->
     <p class="fl_left">Copyright &copy; 2022 - Todos os Direitos Reservados - <a href="#"></a></p>
@@ -224,11 +218,14 @@ Licence URI: https://www.os-templates.com/template-terms
     <!-- ################################################################################################ -->
   </div>
 </div>
-<!-- ################################################################################################ -->
-<a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>
-<!-- JAVASCRIPTS -->
-<script src="../layout/scripts/jquery.min.js"></script>
-<script src="../layout/scripts/jquery.backtotop.js"></script>
-<script src="../layout/scripts/jquery.mobilemenu.js"></script>
-</body>
+
+
+  <a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>
+
+  <!-- JAVASCRIPTS -->
+  <script src="layout/scripts/jquery.min.js"></script>
+  <script src="layout/scripts/jquery.backtotop.js"></script>
+  <script src="layout/scripts/jquery.mobilemenu.js"></script>
+
+	</body>
 </html>

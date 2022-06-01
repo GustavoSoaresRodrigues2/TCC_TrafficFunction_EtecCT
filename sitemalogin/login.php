@@ -1,56 +1,76 @@
-<!DOCTYPE html>
-<!--
-Template Name: Oleald
-Author: <a href="https://www.os-templates.com/">OS Templates</a>
-Author URI: https://www.os-templates.com/
-Licence: Free to use under our free template licence terms
-Licence URI: https://www.os-templates.com/template-terms
--->
+<!--===================================
+  Trecho de php que faz conexao com bd 
+=====================================-->
+<?php 
+	//Verifica se usuario digitado é nulo
+	if ($_POST["Email"] == null) {
+
+	//Usuario e enviado de volta ao formulario
+	header("Location: form_login.html");
+
+	}
+	else {
+
+		//O usuario e senha digitados são colocados e suas respectivas variaveis
+		$usuarioDigitado = $_POST["Email"];
+		$senhaDigitada = $_POST["Senha"];
+	}
+
+	//Conexão com o Banco de Dados
+	require "conectar.php";
+
+	//Faz uma consulta a tbl_cliente e retorna a linha que contem o usuario digitado
+	$strSQL = "SELECT cod, Email, Senha FROM tbl_TF_Usario where Email = '$usuarioDigitado'";
+
+	//Executa a consulta(query) a variavel $consulta contem o resultado da consulta
+	$consulta = mysqli_query($conexao, $strSQL);
+
+	//Loop pelo resultado da $consulta
+	//Cada linha vai para um array ($row) usuario mysql_fetch_array
+	//O usuario e senha encontrados no BD são armazenados nas novas variaveis
+	while ($linha = mysqli_fetch_array($consulta)) {
+		$nomeuserBD = $linha["Nome"];
+    	$usuarioBD = $linha["Email"];
+		$senhaBD = $linha["Senha"];
+	}
+
+	//Encerra conexão
+	require "desconectar.php";
+
+		//Verifica usuario e senha
+		if ($usuarioDigitado == $usuarioBD && $senhaDigitada == $senhaBD) {
+
+			//Se estiver correto a sessão fica yes
+			session_start();
+                        $_SESSION["Login"] = "SIM";
+                        $_SESSION["Usuario"] = $usuarioBD;
+                        $_SESSION["NomeUser"] = $nomeuserBD;
+			$msg_body = "<h1 align='center'>Você está logado!</h1>";
+                        echo "<br>";
+                        $msg_body = $msg_body . "<p align='center'><img class='gif' src='ibagens/carro_login.gif'></p>";
+			//$msg_body = $msg_body . "<p align='center'><a href='../index.php'>Inicio</a></p>";
+		}
+		else {
+			//Se estiver errado fica NO
+			session_start();
+			$_SESSION["Login"] = "NÃO";
+			$msg_body = "<h1 align='center'>Você NÃO está logado</h1>";
+			$msg_body = $msg_body . "<p><a href='form_login.html'>Tentar Novamente</a></p>";
+		}
+?>
+<!-- #PHP -->
+
 <html lang="br">
-<!-- To declare your language - read more here: https://www.w3.org/International/questions/qa-html-language-declarations -->
-
 <head>
-<title>TF | Login</title>
-<meta charset="utf-8">
-<meta name="author" content="TrafficFunction">
-<meta name="description" content="Site para divilguar nossa empresa">
-<meta name="keywords" content="transito, semaforos, html">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<link href="../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
-<style>
-
-/* DEMO ONLY */
-.container .demo{text-align:center;}
-.container .demo div{padding:8px 0;}
-.container .demo div:nth-child(odd){color:#FFFFFF; background:#CCCCCC;}
-.container .demo div:nth-child(even){color:#FFFFFF; background:#979797;}
-@media screen and (max-width:900px){.container .demo div{margin-bottom:0;}}
-/* DEMO ONLY */
-
-.form_login{
-  background-color: black;
-  width: 30%;
-  height: 350px;
-  margin-right: auto;
-  margin-left: auto;
-  padding: 80px;
-  border-radius: 15px;
-}
-.form_login input{
-  padding: 15px;
-  border: none;
-  outline: none;
-}
-.form_login h1{
-  color: #FFFFFF;
-  text-align: center;
-}
-</style>
-
-</head>
+	<title>TF | Login</title>
+	<meta charset="utf-8">
+	<meta name="author" content="TrafficFunction">
+	<meta name="description" content="Site para divilguar nossa empresa">
+	<meta name="keywords" content="transito, semaforos, html">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<link href="../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
 
 <body id="top">
-
 <div class="bgded overlay light" style="background-image:url('../images/backgrounds/background_home.jpeg');"> 
   <div class="wrapper row0">
     <div id="topbar" class="hoc clear"> 
@@ -123,39 +143,22 @@ Licence URI: https://www.os-templates.com/template-terms
     <!-- ################################################################################################ -->
     <ul>
       <li><a href="../index.html">Home</a></li>
-      <li><a href="#">Login</a></li>
+      <li><a href="form_login.html">Login</a></li>
+	  <li><a href="#">Logando</a></li>
+	  
     </ul>
     <!-- ################################################################################################ -->
   </div>
 </div>
 <!-- End Top Background Image Wrapper -->
 
-<div class="wrapper row3">
-  <main class="hoc container clear"> 
-    <div class="content">
-      <h1>| LOGUE AGORA!!!</h1>
-      <!-- <img class="imgr borderedbox inspace-5" src="../images/demo/imgr.gif" alt=""> -->
-      <p>Qualquer visitante do nosso site tem acesso aos mais diversos assuntos sobre o transito. Mas apenas aqueles que criam uma conta podem verdadeira mente fazer a diferença!</p>
-      <p>você também pode se interessar em <a href="#">nosso App</a> muito simples e prático de usar.</p>
+	<!-- TRECHO DE PHP QUE MOSTRA A MENSAGEM -->
+	<?php
+		echo $msg_body;
+	?>
+	<!-- /Fim da mensagem -->
 
-      <!-- Form Login -->
-      <div class="espaco">
-      <div class="form_login">
-        <h1>LOGIN</h1>
-        <form class="logar" method="post" action="login.php">
-          <input type="text" name="Email" placeholder="E-mail">
-          </br>
-          <input type="password" name="Senha" placeholder="Senha">
-          </br>
-          <input class="btn" type="submit" value="LOGAR">
-        </div>
-        <div class="espaco">
-      <!-- /Formulario Login -->
-    </div>
-  </main>
-</div>
-
-<!-- ################################################################################################ -->
+	<!-- ################################################################################################ -->
 <div class="wrapper row2 bgded overlay" style="background-image:url('../images/backgrounds/background_servicos.jpg');">
   <section class="hoc cta clear"> 
     <!-- ################################################################################################ -->
@@ -215,20 +218,20 @@ Licence URI: https://www.os-templates.com/template-terms
     <!-- ################################################################################################ -->
   </footer>
 </div>
-<!-- ################################################################################################ -->
-<div class="wrapper row5">
-  <div id="copyright" class="hoc clear"> 
-    <!-- ################################################################################################ -->
-    <p class="fl_left">Copyright &copy; 2022 - Todos os Direitos Reservados - <a href="#"></a></p>
-    <p class="fl_right">Modelo de Template do site <a target="_blank" href="https://www.os-templates.com/" title="Free Website Templates">Free Templates</a></p>
-    <!-- ################################################################################################ -->
-  </div>
-</div>
-<!-- ################################################################################################ -->
-<a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>
-<!-- JAVASCRIPTS -->
-<script src="../layout/scripts/jquery.min.js"></script>
-<script src="../layout/scripts/jquery.backtotop.js"></script>
-<script src="../layout/scripts/jquery.mobilemenu.js"></script>
-</body>
+	<!-- ################################################################################################ -->
+	<div class="wrapper row5">
+	<div id="copyright" class="hoc clear"> 
+		<!-- ################################################################################################ -->
+		<p class="fl_left">Copyright &copy; 2022 - Todos os Direitos Reservados - <a href="#"></a></p>
+		<p class="fl_right">Modelo de Template do site <a target="_blank" href="https://www.os-templates.com/" title="Free Website Templates">Free Templates</a></p>
+		<!-- ################################################################################################ -->
+	</div>
+	</div>
+	<!-- ################################################################################################ -->
+	<a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>
+	<!-- JAVASCRIPTS -->
+	<script src="../layout/scripts/jquery.min.js"></script>
+	<script src="../layout/scripts/jquery.backtotop.js"></script>
+	<script src="../layout/scripts/jquery.mobilemenu.js"></script>
+	</body>
 </html>
