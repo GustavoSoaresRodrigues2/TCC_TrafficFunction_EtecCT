@@ -29,7 +29,7 @@ File: Layout CSS
 #topbar ul li{display:inline-block; margin-right:15px;}
 #topbar ul li:last-child{margin-right:0; padding-right:0; border-right:none;}
 #topbar i{line-height:normal;}
-#topbar > div:first-of-type ul li i{margin-right:5px;}
+#topbar > inpout:first-of-type ul li i{margin-right:5px;}
 
 
 /* Header
@@ -95,10 +95,10 @@ File: Layout CSS
 #comments .comcont{display:block; margin:0; padding:0;}
 #comments .comcont p{margin:10px 5px 10px 0; padding:0;}
 
-#comments form{display:block; width:100%;}
+#comments form{display:table; width:100%; justify-content: center;}
 #comments input, #comments textarea{width:100%; padding:10px; border:1px solid;}
 #comments textarea{overflow:auto;}
-#comments div{margin-bottom:15px;}
+#comments input{margin-bottom:15px;}
 #comments input[type="submit"], #comments input[type="reset"]{display:inline-block; width:auto; min-width:150px; margin:0; padding:8px 5px; cursor:pointer;}
 
 /* Sidebar */
@@ -446,6 +446,9 @@ table a, #comments a{background-color:inherit;}
 	.font-x3{font-size:1.6rem;}
 }
 
+
+/* Minhas incrementações
+----------------------------------------------------------------------------------------------------------------*/
 #logo_top{
 	width: 250px;
 }
@@ -474,4 +477,23 @@ table a, #comments a{background-color:inherit;}
 
 .espaco {
 	padding: 20px;
+}
+
+.txtformR{
+	width: 45%;
+	float: right;
+}
+
+.txtformL{
+	width: 45%;
+	float: left;
+}
+
+.txtform{
+	width: 65%;
+	display: inline-block;
+}
+
+table{
+	border: 1px solid black;
 }
