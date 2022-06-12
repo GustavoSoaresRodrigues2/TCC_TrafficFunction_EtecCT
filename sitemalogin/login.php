@@ -1,6 +1,3 @@
-<!--===================================
-  Trecho de php que faz conexao com bd 
-=====================================-->
 <?php 
 	//Verifica se usuario digitado é nulo
 	if ($_POST["Email"] == null) {
@@ -12,7 +9,7 @@
 	else {
 
 		//O usuario e senha digitados são colocados e suas respectivas variaveis
-		$usuarioDigitado = $_POST["Email"];
+		$emailDigitado = $_POST["Email"];
 		$senhaDigitada = $_POST["Senha"];
 	}
 
@@ -20,7 +17,7 @@
 	require "conectar.php";
 
 	//Faz uma consulta a tbl_cliente e retorna a linha que contem o usuario digitado
-	$strSQL = "SELECT cod, Email, Senha FROM tbl_TF_Usario where Email = '$usuarioDigitado'";
+	$strSQL = "SELECT Email, Senha FROM tbl_TF_Usuario where Email = '$emailDigitado'";
 
 	//Executa a consulta(query) a variavel $consulta contem o resultado da consulta
 	$consulta = mysqli_query($conexao, $strSQL);
@@ -29,8 +26,7 @@
 	//Cada linha vai para um array ($row) usuario mysql_fetch_array
 	//O usuario e senha encontrados no BD são armazenados nas novas variaveis
 	while ($linha = mysqli_fetch_array($consulta)) {
-		$nomeuserBD = $linha["Nome"];
-    	$usuarioBD = $linha["Email"];
+                $emailBD = $linha["Email"];
 		$senhaBD = $linha["Senha"];
 	}
 
@@ -38,17 +34,15 @@
 	require "desconectar.php";
 
 		//Verifica usuario e senha
-		if ($usuarioDigitado == $usuarioBD && $senhaDigitada == $senhaBD) {
+		if ($emailDigitado == $emailBD && $senhaDigitada == $senhaBD) {
 
 			//Se estiver correto a sessão fica yes
 			session_start();
                         $_SESSION["Login"] = "SIM";
-                        $_SESSION["Usuario"] = $usuarioBD;
-                        $_SESSION["NomeUser"] = $nomeuserBD;
+                        $_SESSION["EmailUser"] = $emailBD;
 			$msg_body = "<h1 align='center'>Você está logado!</h1>";
                         echo "<br>";
-                        $msg_body = $msg_body . "<p align='center'><img class='gif' src='ibagens/carro_login.gif'></p>";
-			//$msg_body = $msg_body . "<p align='center'><a href='../index.php'>Inicio</a></p>";
+                        $msg_body = $msg_body . "<p align='center'>Podemos começar a iluminar!</p>";
 		}
 		else {
 			//Se estiver errado fica NO
@@ -63,7 +57,7 @@
 <html lang="br">
 <head>
 	<title>TF | Login</title>
-	<meta charset="utf-8">
+	<meta charset="UTF-8">
 	<meta name="author" content="TrafficFunction">
 	<meta name="description" content="Site para divilguar nossa empresa">
 	<meta name="keywords" content="transito, semaforos, html">
