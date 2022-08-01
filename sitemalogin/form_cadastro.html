@@ -26,6 +26,36 @@ Licence URI: https://www.os-templates.com/template-terms
 .container .demo div:nth-child(even){color:#FFFFFF; background:#979797;}
 @media screen and (max-width:900px){.container .demo div{margin-bottom:0;}}
 /* DEMO ONLY */
+
+.form_cadastro{
+  width: 80%;
+  height: 100%;
+  background-color:#fdd05e;
+  border-radius: 15px;
+  padding: 10px;
+}
+.form_cadastro h1, label{
+  color: #FFFFFF;
+  font-family: "Arial";
+  
+}
+.form_cadastro h1{
+  font-size: 7mm;
+}
+.form_cadastro label{
+  margin-top: 10px;
+  font-size:5mm;
+}
+.form_cadastro input{ 
+  width: 90%;
+  height: 40px;
+  border: none;
+  outline: none;
+}
+#Email{
+  margin-bottom: 20px;
+}
+
 </style>
 
 </head>
@@ -105,8 +135,8 @@ Licence URI: https://www.os-templates.com/template-terms
 
       <!-- Form Cadastro -->
       <center>
-      <div id="comments">
-        <h2>Formulario de Cadastro</h2>
+        <div class="form_cadastro">
+        <h1>Formulário de Cadastro</h1>
         <form action="inserir_usuario.php" method="post"> 
           <div class="txtformL">
             <label for="Nome">Nome: <span>*</span></label>
@@ -114,7 +144,7 @@ Licence URI: https://www.os-templates.com/template-terms
           </div>
           <div class="txtformR">
             <label for="Telefone">Telefone: </label>
-            <input type="text" name="Telefone" id="Telefone" placeholder="(DDD) ***** ****" value="" size="22" required>
+            <input type="text" name="Telefone" id="Telefone" placeholder="(DDD) 12345-4321" value="" size="22" required>
           </div>
           <div class="txtformL">
             <label for="CPF">CPF: <span>*</span></label>
