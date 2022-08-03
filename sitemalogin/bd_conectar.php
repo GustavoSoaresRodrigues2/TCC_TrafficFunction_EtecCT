@@ -1,3 +1,3 @@
 <?php
-   $conectar = mysqli_connect("fdb26.awardspace.net", "3442405_bancoguto", "]011*,!D112LsVJ_", "3442405_bancoguto") or die (mysqli_error());
+   $conectar = mysqli_connect("127.0.0.1", "3442405_bancoguto", "souza2102", "3442405_bancoguto") or die (mysqli_error());
 ?>
