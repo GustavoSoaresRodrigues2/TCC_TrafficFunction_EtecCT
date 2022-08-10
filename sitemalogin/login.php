@@ -40,7 +40,7 @@
 			session_start();
                         $_SESSION["Login"] = "SIM";
                         $_SESSION["EmailUser"] = $emailBD;
-			$msg_body = "<h1 align='center'>Você está logado!</h1>";
+			                  $msg_body = "<h1 align='center'>Você está logado!</h1>";
                         echo "<br>";
                         $msg_body = $msg_body . "<p align='center'>Podemos começar a iluminar!</p>";
 		}
