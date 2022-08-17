@@ -1,3 +1,25 @@
+<?php
+    require "../../sitemalogin/conectar.php";
+
+    $comentario = $_POST['comentario'];
+
+    $sql = mysqli_query($conexao, "INSERT INTO tbl_comentario VALUES ('', '".$comentario."')");
+
+    if ($sql) {
+		alert("Comentario enviado com sucesso!");
+	}	else {
+			$msg = "Houve um erro!";
+		}
+
+    $consulta = mysqli_query($conexao, $strSQL);
+
+    while ($linha = mysqli_fetch_array($consulta)) {
+        $comentarioBD = $linha["comentario"];
+    }
+
+    //Encerra conexão
+    require "desconectar.php";
+?>
 <!DOCTYPE html>
 <!--
 Template Name: Oleald
@@ -7,56 +29,25 @@ Licence: Free to use under our free template licence terms
 Licence URI: https://www.os-templates.com/template-terms
 -->
 <html lang="br">
+
 <!-- To declare your language - read more here: https://www.w3.org/International/questions/qa-html-language-declarations -->
 
 <head>
-<title>TF | Login</title>
+<title>TrafficFunction</title>
 <meta charset="utf-8">
 <meta name="author" content="TrafficFunction">
 <meta name="description" content="Site para divilguar nossa empresa">
 <meta name="keywords" content="transito, semaforos, html">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
-<style>
-
-/* DEMO ONLY */
-.container .demo{text-align:center;}
-.container .demo div{padding:8px 0;}
-.container .demo div:nth-child(odd){color:#FFFFFF; background:#CCCCCC;}
-.container .demo div:nth-child(even){color:#FFFFFF; background:#979797;}
-@media screen and (max-width:900px){.container .demo div{margin-bottom:0;}}
-/* DEMO ONLY */
-
-.form_login{
-  background-color: #fdd05e;
-  width: 30%;
-  height: 330px;
-  margin-right: auto;
-  margin-left: auto;
-  padding: 50px;
-  border-radius: 15px;
-}
-.form_login input{
-  padding: 15px;
-  border: none;
-  outline: none;
-}
-.form_login h1{
-  color: #FFFFFF;
-  font-family: "Arial";
-  text-align: center;
-  font-size: 7mm;
-}
-</style>
-
 </head>
-
 <body id="top">
 
+<!-- Top Background Image Wrapper -->
 <div class="bgded overlay light" style="background-image:url('../images/backgrounds/background_home.jpeg');"> 
   <div class="wrapper row0">
     <div id="topbar" class="hoc clear"> 
-      <div class="fl_left">
+      <div class="fl_left"> 
         <ul class="nospace">
 
           <!-- Contato -->
@@ -68,7 +59,7 @@ Licence URI: https://www.os-templates.com/template-terms
       </div>
     </div>
   </div>
-  
+ 
   <!-- NavBar -->
   <div class="wrapper row1">
     <header id="header" class="hoc clear"> 
@@ -82,30 +73,28 @@ Licence URI: https://www.os-templates.com/template-terms
       <nav id="mainav" class="fl_right">
         <ul class="clear">
 
-          <li><a href="../index.html">Página Inicial</a></li>
-
           <!-- Parte Guia -->
-          <li><a class="drop" href="../pages/empresa.html">Guias</a>
+          <li><a class="drop">Guias</a>
             <ul>
-              <li><a href="../pages/quemSomos.html">Quem Somos?</a></li>
-              <li><a href="../pages/mapaInflacoes.html">Mapa de infrações</a></li>
-              <li><a href="#">Comentários</a></li>
+              <li><a href="quemSomos.html">Quem Somos?</a></li>
+              <li><a href="mapaInflacoes.html">Mapa de infrações</a></li>
+              <li><a href="comentario.html">Comentários</a></li>
             </ul>
           </li>
           <!-- /Parte Guia -->
 
           <!-- Parte Cadastro -->
-          <li><a class="drop" href="../sitemalogin/form_login.html">Conta</a>
+          <li><a class="drop">Conta</a>
             <ul>
-              <li><a href="../pages/contaUsuario.html">Perfil</a></li>
-              <li><a href="form_login.html">Login</a></li>
-              <li><a href="form_cadastro.html">Cadastrar</a></li>
+              <li><a href="contaUsuario.html">Perfil</a></li>
+              <li><a href="../sitemalogin/form_login.html">Login</a></li>
+              <li><a href="../sitemalogin/form_cadastro.html">Cadastrar</a></li>
             </ul>
           </li>
           <!-- /Parte Cadastro -->
           
-          <li><a href="../pages/empresa.html">Nosso Serviços</a></li>
-          <li><a href="../pages/empresa.html">Suporte</a></li>
+          <li><a href="#">Nosso Serviços</a></li>
+          <li><a href="#">Suporte</a></li>
         </ul>
       </nav>
     </header>
@@ -113,31 +102,31 @@ Licence URI: https://www.os-templates.com/template-terms
   <!-- /NavBar -->
 </div>
 <!-- End Top Background Image Wrapper -->
+<br>
 
-<div class="wrapper row3">
-  <main class="hoc container clear"> 
-    <div class="content">
-      <h1>| LOGUE AGORA!!!</h1>
-      <!-- <img class="imgr borderedbox inspace-5" src="../images/demo/imgr.gif" alt=""> -->
-      <p>Qualquer visitante do nosso site tem acesso aos mais diversos assuntos sobre o transito. Mas apenas aqueles que criam uma conta podem verdadeira mente fazer a diferença!</p>
-      <p>você também pode se interessar em <a href="#">nosso App</a> muito simples e prático de usar.</p>
+<<?php
+		echo "<h1 align='center'>$msg</h1>";
+		//Selecione todos os usuarios
+		$sql = mysqli_query($conexao, "SELECT * FROM tbl_tf_usuario ORDER BY cod DESC limit 1");
 
-      <!-- Form Login -->
-      <div class="espaco">
-      <div class="form_login">
-        <h1>LOGIN</h1>
-        <form class="logar" method="post" action="login.php">
-          <input type="text" name="Email" placeholder="E-mail">
-          </br>
-          <input type="password" name="Senha" placeholder="Senha">
-          </br>
-          <input class="btn" type="submit" value="LOGAR">
-        </div>
-        <div class="espaco">
-      <!-- /Formulario Login -->
-    </div>
-  </main>
-</div>
+		//Exibe as informações de cada usuario
+		while ($usuario = mysqli_fetch_object($sql)) {
+		  //Exibimos as informações
+      echo "<table>";
+      echo "<tr><td><b>Seus Dados</b></td></tr>";
+      echo "<tr><td><b>Nome:</b> " . $usuario->Nome . "</td></tr>";
+      echo "<tr><td><b>CPF:</b> " . $usuario->CPF . "</td></tr>";
+      echo "<tr><td><b>E-mail:</b> " . $usuario->Email . "</td></tr>";
+      echo "<tr><td><b>Telefone:</b> " . $usuario->Telefone . "</td></tr>";
+      echo "</table>";		
+    }
+
+			//Encerra conexão
+			require "desconectar.php";
+
+		?>
+
+<br>
 
 <!-- FOOTER -->
 <div class="wrapper row4">
@@ -146,7 +135,7 @@ Licence URI: https://www.os-templates.com/template-terms
       <h6 class="heading">Motivação</h6>
       <p>Não é de hoje que encontramos problemas no transito que atrapalham nosso dia a dia.</p>
       <p>Diversas irregularidades de trânsito (incluindo semáforos, placas danificadas &hellip;</p>
-      <p class="nospace"><a href="#">Ler mais</a></p>
+      <p class="nospace"><a href="quemSomos.html">Ler mais</a></p>
     </article>
     <div class="one_third">
       <h6 class="heading">Nossos Contatos</h6>
@@ -169,21 +158,24 @@ Licence URI: https://www.os-templates.com/template-terms
     <div class="one_quarter">
       <h6 class="heading">Nossos serviços</h6>
       <ul class="nospace linklist">
-        <li><a href="" download>App Mobile</a></li>
-        <li><a href="../pages/mapaInflacoes.html">Mapa</a></li>
-        <li><a href="">Comentarios</a></li>
-        <li><a href="../pages/quemSomos.html">Nossa Empresa</a></li>
-        <li><a href="">Suporte</a></li>
+        <li><a href="#" download>App Mobile</a></li>
+        <li><a href="mapaInflacoes.html">Mapa</a></li>
+        <li><a href="comentario.html">Comentarios</a></li>
+        <li><a href="quemSomos.html">Nossa Empresa</a></li>
+        <li><a href="#">Suporte</a></li>
       </ul>
     </div>
   </footer>
 </div>
 <div class="wrapper row5">
   <div id="copyright" class="hoc clear"> 
-    <p class="fl_left">Copyright &copy; 2022 - Todos os Direitos Reservados  a TrafficFunciton<a href="#"></a></p>
+    <p class="fl_left">Copyright &copy; 2022 - Todos os Direitos Reservados a TrafficFunciton<a href="#"></a></p>
   </div>
 </div>
+
+
 <a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>
+
 <!-- JAVASCRIPTS -->
 <script src="../layout/scripts/jquery.min.js"></script>
 <script src="../layout/scripts/jquery.backtotop.js"></script>

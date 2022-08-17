@@ -1,3 +1,3 @@
 <?php
-	$conexao = mysqli_connect("localhost", "root", "", "cd6");
+	$conexao = mysqli_connect("localhost", "root", "", "teste") or die(mysql_error());
 ?>

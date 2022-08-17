@@ -1,20 +1,20 @@
 <?php 
-	//Conexão com o Banco de Dados
+  //Conexão com o Banco de Dados
 	require "conectar.php";
 
 	//Recupera os dados dos campos
 	$nome = $_POST['Nome'];
-        $cpf = $_POST['CPF'];
-        $email = $_POST['Email'];
+  $cpf = $_POST['CPF'];
+  $email = $_POST['Email'];
 	$telefone = $_POST['Telefone'];
 	$senha = $_POST['Senha'];
 
 	//Insere os dados no banco
-	$sql = mysqli_query($conexao, "INSERT INTO tbl_TF_Usuario VALUES ('', '".$nome."', '".$cpf."', '".$email."', '".$telefone."', '".$senha."')");
+	$sql = mysqli_query($conexao, "INSERT INTO tbl_tf_usuario VALUES ('', '".$nome."', '".$cpf."', '".$email."', '".$telefone."', '".$senha."')");
 
 	//Se os dados forem inseridos com sucesso
 	if ($sql) {
-		$msg = "Você foi cadastrado com sucesso!";
+		$msg = "<br>Você foi cadastrado com sucesso!";
 	}	else {
 			$msg = "Houve um erro! Veja o último usuario cadastrado com sucesso.";
 		}
@@ -69,19 +69,13 @@
       <div class="fl_left">
         <ul class="nospace">
            <!-- Contato -->
-           <li><i class="fa fa-phone"></i> +55 (11) 8552-7890</li>
+           <li><i class="fa fa-phone"></i> +55 (11) xxxxx-xxxx</li>
            <li><i class="fa fa-envelope-o"></i> trafficfunction@gmail.com</li>
            <!-- /Contato -->
         </ul>
       </div>
 
       <div class="fl_right">
-
-        <ul class="nospace">
-          <li><a href="../index.html"><i class="fa fa-lg fa-home"></i></a></li>
-          <li><a href="form_login.html" title="Login"><i class="fa fa-lg fa-sign-in"></i></a></li>
-          <li><a href="form_cadastro.html" title="Cadastrar"><i class="fa fa-lg fa-edit"></i></a></li>
-        </ul>
 
       </div>
     </div>
@@ -100,52 +94,42 @@
       <nav id="mainav" class="fl_right">
         <ul class="clear">
           
-          <li><a href="../index.html">Home</a></li>
+          <li><a href="../index.html">Página Inicial</a></li>
 
           <!-- Parte Guia -->
-          <li><a class="drop" href="../pages/empresa.html">Guias</a>
+          <li><a class="drop">Guias</a>
             <ul>
-              <li><a href="../pages/empresa.html">Quem Somos?</a></li>
-              <li><a href="../pages/empresa.html">Nosso App</a></li>
-              <li><a href="../pages/empresa.html">Mapa de inflações</a></li>
-              <li><a href="../pages/empresa.html">Comentários</a></li>
+              <li><a href="../pages/quemSomos.html">Quem Somos?</a></li>
+              <li><a href="../pages/mapaInflacoes.html">Mapa de infrações</a></li>
+              <li><a href="#">Comentários</a></li>
             </ul>
           </li>
           <!-- /Parte Guia -->
 
           <!-- Parte Cadastro -->
-          <li><a class="drop" href="../sitemalogin/form_login.html">Conta</a>
+          <li><a class="drop">Conta</a>
             <ul>
+              <li><a href="../pages/contaUsuario.html">Perfil</a></li>
               <li><a href="form_login.html">Login</a></li>
               <li><a href="form_cadastro.html">Cadastrar</a></li>
-              <li><a href="logoff.php">Sair da Conta</a></li>
             </ul>
           </li>
           <!-- /Parte Cadastro -->
           
-          <li><a href="../pages/empresa.html">Nosso Serviços</a></li>
-          <li><a href="../pages/empresa.html">Suporte</a></li>
+          <li><a href="">Nosso Serviços</a></li>
+          <li><a href="">Suporte</a></li>
         </ul>
       </nav>
     </header>
   </div>
   <!-- /NavBar -->
-
-  <div id="breadcrumb" class="hoc clear"> 
-    <!-- ################################################################################################ -->
-    <ul>
-      <li><a href="../index.html">Home</a></li>
-      <li><a href="#">Cadastrar</a></li>
-    </ul>
-    <!-- ################################################################################################ -->
-  </div>
 </div>
 <!-- End Top Background Image Wrapper -->
 
 		<?php
 		echo "<h1 align='center'>$msg</h1>";
 		//Selecione todos os usuarios
-		$sql = mysqli_query($conexao, "SELECT * FROM tbl_TF_Usuario ORDER BY cod DESC limit 1");
+		$sql = mysqli_query($conexao, "SELECT * FROM tbl_tf_usuario ORDER BY cod DESC limit 1");
 
 		//Exibe as informações de cada usuario
 		while ($usuario = mysqli_fetch_object($sql)) {
@@ -156,7 +140,6 @@
       echo "<tr><td><b>CPF:</b> " . $usuario->CPF . "</td></tr>";
       echo "<tr><td><b>E-mail:</b> " . $usuario->Email . "</td></tr>";
       echo "<tr><td><b>Telefone:</b> " . $usuario->Telefone . "</td></tr>";
-      //echo "<tr><td><b>Codigo:</b> " . $cliente->codCliente . "</td></tr>";
       echo "</table>";		
     }
 
@@ -170,12 +153,11 @@
 		  ============================-->
       <div class="wrapper row4">
   <footer id="footer" class="hoc clear"> 
-    <!-- ################################################################################################ -->
     <article class="one_third first">
       <h6 class="heading">Motivação</h6>
       <p>Não é de hoje que encontramos problemas no transito que atrapalham nosso dia a dia.</p>
       <p>Diversas irregularidades de trânsito (incluindo semáforos, placas danificadas &hellip;</p>
-      <p class="nospace"><a href="#">Ler mais</a></p>
+      <p class="nospace"><a href="../pages/quemSomos.html">Ler mais</a></p>
     </article>
     <div class="one_third">
       <h6 class="heading">Nossos Contatos</h6>
@@ -185,7 +167,7 @@
           Rua &amp; nº, São Paulo, Cidade Tiradentes
           </address>
         </li>
-        <li><i class="fa fa-phone"></i> +55 (11) 2285-1369</li>
+        <li><i class="fa fa-phone"></i> +55 (11) xxxxx-xxxx</li>
         <li><i class="fa fa-envelope-o"></i> trafficfunction@gmail.com</li>
       </ul>
       <ul class="faico clear">
@@ -198,11 +180,11 @@
     <div class="one_quarter">
       <h6 class="heading">Nossos serviços</h6>
       <ul class="nospace linklist">
-        <li><a href="index.html">App Mobile</a></li>
-        <li><a href="index.html">Mapa</a></li>
-        <li><a href="pages/empresa.html">Comentarios</a></li>
-        <li><a href="pages/empresa.html">Nossa Empresa</a></li>
-        <li><a href="index.html">Suporte</a></li>
+        <li><a href="">App Mobile</a></li>
+        <li><a href="../pages/mapaInflacoes.html">Mapa</a></li>
+        <li><a href="">Comentarios</a></li>
+        <li><a href="../pages/quemSomos.html">Nossa Empresa</a></li>
+        <li><a href="">Suporte</a></li>
       </ul>
     </div>
     <!-- ################################################################################################ -->
@@ -212,10 +194,7 @@
 
       <div class="wrapper row5">
   <div id="copyright" class="hoc clear"> 
-    <!-- ################################################################################################ -->
-    <p class="fl_left">Copyright &copy; 2022 - Todos os Direitos Reservados - <a href="#"></a></p>
-    <p class="fl_right">Modelo de Template do site <a target="_blank" href="https://www.os-templates.com/" title="Free Website Templates">Free Templates</a></p>
-    <!-- ################################################################################################ -->
+    <p class="fl_left">Copyright &copy; 2022 - Todos os Direitos Reservados a TrafficFunciton<a href="#"></a></p>
   </div>
 </div>
 

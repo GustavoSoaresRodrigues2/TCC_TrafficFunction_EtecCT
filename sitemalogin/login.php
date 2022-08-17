@@ -40,7 +40,7 @@
 			session_start();
                         $_SESSION["Login"] = "SIM";
                         $_SESSION["EmailUser"] = $emailBD;
-			                  $msg_body = "<h1 align='center'>Você está logado!</h1>";
+			                  $msg_body = "<br><h1 align='center'>Você está logado!</h1>";
                         echo "<br>";
                         $msg_body = $msg_body . "<p align='center'>Podemos começar a iluminar!</p>";
 		}
@@ -51,9 +51,7 @@
 			$msg_body = "<h1 align='center'>Você NÃO está logado</h1>";
 			$msg_body = $msg_body . "<p><a href='form_login.html'>Tentar Novamente</a></p>";
 		}
-?>
-<!-- #PHP -->
-
+?> <!-- #PHP -->
 <html lang="br">
 <head>
 	<title>TF | Login</title>
@@ -72,20 +70,13 @@
       <div class="fl_left">
         <ul class="nospace">
            <!-- Contato -->
-           <li><i class="fa fa-phone"></i> +55 (11) 8552-7890</li>
+           <li><i class="fa fa-phone"></i> +55 (11) xxxxx-xxxx</li>
            <li><i class="fa fa-envelope-o"></i> trafficfunction@gmail.com</li>
            <!-- /Contato -->
         </ul>
       </div>
 
       <div class="fl_right">
-
-        <ul class="nospace">
-          <li><a href="../index.html"><i class="fa fa-lg fa-home"></i></a></li>
-          <li><a href="form_login.html" title="Login"><i class="fa fa-lg fa-sign-in"></i></a></li>
-          <li><a href="form_cadastro.html" title="Cadastrar"><i class="fa fa-lg fa-edit"></i></a></li>
-        </ul>
-
       </div>
     </div>
   </div>
@@ -103,31 +94,30 @@
       <nav id="mainav" class="fl_right">
         <ul class="clear">
 
-          <li><a href="../index.html">Home</a></li>
+        <li><a href="../index.html">Página Inicial</a></li>
 
-          <!-- Parte Guia -->
-          <li><a class="drop" href="../pages/empresa.html">Guias</a>
-            <ul>
-              <li><a href="../pages/empresa.html">Quem Somos?</a></li>
-              <li><a href="../pages/empresa.html">Nosso App</a></li>
-              <li><a href="../pages/empresa.html">Mapa de inflações</a></li>
-              <li><a href="../pages/empresa.html">Comentários</a></li>
-            </ul>
-          </li>
+        <!-- Parte Guia -->
+        <li><a class="drop">Guias</a>
+        <ul>
+          <li><a href="quemSomos.html">Quem Somos?</a></li>
+          <li><a href="mapaInflacoes.html">Mapa de infrações</a></li>
+          <li><a href="#">Comentários</a></li>
+        </ul>
+        </li>
           <!-- /Parte Guia -->
 
           <!-- Parte Cadastro -->
-          <li><a class="drop" href="../sitemalogin/form_login.html">Conta</a>
+          <li><a class="drop">Conta</a>
             <ul>
+              <li><a href="../pages/contaUsuario.html">Perfil</a></li>
               <li><a href="form_login.html">Login</a></li>
               <li><a href="form_cadastro.html">Cadastrar</a></li>
-              <li><a href="logoff.php">Sair da Conta</a></li>
             </ul>
           </li>
           <!-- /Parte Cadastro -->
           
-          <li><a href="../pages/empresa.html">Nosso Serviços</a></li>
-          <li><a href="../pages/empresa.html">Suporte</a></li>
+          <li><a href="">Nosso Serviços</a></li>
+          <li><a href="">Suporte</a></li>
         </ul>
       </nav>
     </header>
@@ -135,12 +125,6 @@
   <!-- /NavBar -->
   <div id="breadcrumb" class="hoc clear"> 
     <!-- ################################################################################################ -->
-    <ul>
-      <li><a href="../index.html">Home</a></li>
-      <li><a href="form_login.html">Login</a></li>
-	  <li><a href="#">Logando</a></li>
-	  
-    </ul>
     <!-- ################################################################################################ -->
   </div>
 </div>
@@ -153,23 +137,6 @@
 	<!-- /Fim da mensagem -->
 
 	<!-- ################################################################################################ -->
-<div class="wrapper row2 bgded overlay" style="background-image:url('../images/backgrounds/background_servicos.jpg');">
-  <section class="hoc cta clear"> 
-    <!-- ################################################################################################ -->
-    <div class="sectiontitle">
-      <h6 class="heading">Se Mantenha atualizado</h6>
-      <p>Forneça um contato diferente para receber nóticias e atualizações do nosso site</p>
-    </div>
-    <form method="post" action="#">
-      <fieldset>
-        <legend>Newsletter:</legend>
-        <input class="btmspace-15" type="text" value="" placeholder="Insira seu contato aqui"&hellip;>
-        <button type="submit" value="submit">Enviar</button>
-      </fieldset>
-    </form>
-    <!-- ################################################################################################ -->
-  </section>
-</div>
 
 <!-- FOOTER -->
 <div class="wrapper row4">
@@ -179,7 +146,7 @@
       <h6 class="heading">Motivação</h6>
       <p>Não é de hoje que encontramos problemas no transito que atrapalham nosso dia a dia.</p>
       <p>Diversas irregularidades de trânsito (incluindo semáforos, placas danificadas &hellip;</p>
-      <p class="nospace"><a href="#">Ler mais</a></p>
+      <p class="nospace"><a href="../pages/quemSomos.html">Ler mais</a></p>
     </article>
     <div class="one_third">
       <h6 class="heading">Nossos Contatos</h6>
@@ -189,7 +156,7 @@
           Rua &amp; nº, São Paulo, Cidade Tiradentes
           </address>
         </li>
-        <li><i class="fa fa-phone"></i> +55 (11) 2285-1369</li>
+        <li><i class="fa fa-phone"></i> +55 (11) xxxxx-xxxx</li>
         <li><i class="fa fa-envelope-o"></i> trafficfunction@gmail.com</li>
       </ul>
       <ul class="faico clear">
@@ -202,11 +169,11 @@
     <div class="one_quarter">
       <h6 class="heading">Nossos serviços</h6>
       <ul class="nospace linklist">
-        <li><a href="index.html">App Mobile</a></li>
-        <li><a href="index.html">Mapa</a></li>
-        <li><a href="pages/empresa.html">Comentarios</a></li>
-        <li><a href="pages/empresa.html">Nossa Empresa</a></li>
-        <li><a href="index.html">Suporte</a></li>
+        <li><a href="#" download>App Mobile</a></li>
+        <li><a href="../pages/mapaInflacoes.html">Mapa</a></li>
+        <li><a href="#">Comentarios</a></li>
+        <li><a href="../pages/quemSomos.html">Nossa Empresa</a></li>
+        <li><a href="#">Suporte</a></li>
       </ul>
     </div>
     <!-- ################################################################################################ -->
@@ -216,8 +183,7 @@
 	<div class="wrapper row5">
 	<div id="copyright" class="hoc clear"> 
 		<!-- ################################################################################################ -->
-		<p class="fl_left">Copyright &copy; 2022 - Todos os Direitos Reservados - <a href="#"></a></p>
-		<p class="fl_right">Modelo de Template do site <a target="_blank" href="https://www.os-templates.com/" title="Free Website Templates">Free Templates</a></p>
+		<p class="fl_left">Copyright &copy; 2022 - Todos os Direitos Reservados a TrafficFunciton<a href="#"></a></p>
 		<!-- ################################################################################################ -->
 	</div>
 	</div>
