@@ -17,7 +17,7 @@
 	require "conectar.php";
 
 	//Faz uma consulta a tbl_cliente e retorna a linha que contem o usuario digitado
-	$strSQL = "SELECT Email, Senha FROM tbl_TF_Usuario where Email = '$emailDigitado'";
+	$strSQL = "SELECT Email, Senha FROM dados_usuarios where Email = '$emailDigitado'";
 
 	//Executa a consulta(query) a variavel $consulta contem o resultado da consulta
 	$consulta = mysqli_query($conexao, $strSQL);
