@@ -10,7 +10,7 @@
 	$senha = $_POST['Senha'];
 
 	//Insere os dados no banco
-	$sql = mysqli_query($conexao, "INSERT INTO tbl_tf_usuario VALUES ('', '".$nome."', '".$cpf."', '".$email."', '".$telefone."', '".$senha."')");
+	$sql = mysqli_query($conexao, "INSERT INTO dados_usuarios VALUES ('', '".$nome."', '".$cpf."', '".$email."', '".$telefone."', '".$senha."')");
 
 	//Se os dados forem inseridos com sucesso
 	if ($sql) {
