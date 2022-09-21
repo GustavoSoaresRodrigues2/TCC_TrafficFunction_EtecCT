@@ -3,66 +3,37 @@
 	require "conectar.php";
 
 	//Recupera os dados dos campos
-	$nome = $_POST['Nome'];
-  $cpf = $_POST['CPF'];
-  $email = $_POST['Email'];
-	$telefone = $_POST['Telefone'];
-	$senha = $_POST['Senha'];
+    $cpf = $_POST['cpf'];
+    $email = $_POST['email_coment'];
+    $coment = $_POST['coment'];
 
 	//Insere os dados no banco
-	$sql = mysqli_query($conexao, "INSERT INTO dados_usuarios VALUES ('', '".$nome."', '".$cpf."', '".$email."', '".$telefone."', '".$senha."')");
+	$sql = mysqli_query($conexao, "INSERT INTO tabela_comentario VALUES ('".$cpf."', '".$email."', '".$coment."')");
 
 	//Se os dados forem inseridos com sucesso
 	if ($sql) {
-		$msg = "<br>Você foi cadastrado com sucesso!";
+		$msg = "<br>Comentário enviado com sucesso!";
 	  }	else {
-			$msg = "Houve um erro! Veja o último usuario cadastrado com sucesso.";
+		$msg = "Houve um erro!";
 	}
 ?>
 
 <!DOCTYPE html>
 <html>
 	<head>
-		<TITLE>TF | Cadastrando</TITLE>
+	    <TITLE>TF | Comentários</TITLE>
 		<META charset="UTF-8">
-    <meta name="author" content="TrafficFunction">
-    <meta name="description" content="Site para divilguar nossa empresa">
-    <meta name="keywords" content="transito, semaforos, html">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <link href="../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
-		  <style>
-        table {
-          font-size: 20px;
-          margin: 0 auto;
-          width: 70%;
-          padding: 0px;
-          margin-bottom: 10%;
-          color: black;
-        }
-        table tr {
-          word-spacing: 5px;
-          padding: 0;
-          margin: 0;
-          background-color: #54FF9F;
-        }
-        table td {
-          padding: 5px 15px;
-        }
-        table tr:nth-child(1) {
-          padding: 0;
-          text-align: center;
-        }
-        table tr:nth-child(1) td {
-          background: #0c2e8a;
-          color: white;
-        }
-      </style>
+        <meta name="author" content="TrafficFunction">
+        <meta name="description" content="Site para divilguar nossa empresa">
+        <meta name="keywords" content="transito, semaforos, html">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <link href="../../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
 	</head>
 
-	<body id="top">
+    <body id="top">
 
     <!-- Top Background Image Wrapper -->
-    <div class="bgded overlay light" style="background-image:url('../images/backgrounds/background_home.jpeg');">
+    <div class="bgded overlay light" style="background-image:url('../../images/backgrounds/background_home.jpeg');">
       <div class="wrapper row0">
         <div id="topbar" class="hoc clear"> 
           <div class="fl_left">
@@ -86,21 +57,21 @@
           <div id="logo" class="fl_left">
 
             <!-- LogoImagem -->
-            <h1 id="logo_top"><a href="../index.html"><img src="../images/logo_trafficfunction.png" alt=""></a></h1>
+            <h1 id="logo_top"><a href="../../index.html"><img src="../../images/logo_trafficfunction.png" alt=""></a></h1>
             <!-- /LogoImagem -->
 
           </div>
           <nav id="mainav" class="fl_right">
             <ul class="clear">
               
-              <li><a href="../index.html">Página Inicial</a></li>
+              <li><a href="../../index.html">Página Inicial</a></li>
 
               <!-- Parte Guia -->
               <li><a class="drop">Guias</a>
                 <ul>
-                  <li><a href="../pages/quemSomos.html">Quem Somos?</a></li>
-                  <li><a href="../pages/mapaInflacoes.html">Mapa de infrações</a></li>
-                  <li><a href="../pages/sistemacoment/form_comentario.html">Comentários</a></li>
+                  <li><a href="../../pages/quemSomos.html">Quem Somos?</a></li>
+                  <li><a href="../../pages/mapaInflacoes.html">Mapa de infrações</a></li>
+                  <li><a href="../../pages/sistemacoment/form_comentario.html">Comentários</a></li>
                 </ul>
               </li>
               <!-- /Parte Guia -->
@@ -108,9 +79,9 @@
               <!-- Parte Cadastro -->
               <li><a class="drop">Conta</a>
                 <ul>
-                  <li><a href="../pages/contaUsuario.html">Perfil</a></li>
-                  <li><a href="form_login.html">Login</a></li>
-                  <li><a href="form_cadastro.html">Cadastrar</a></li>
+                  <li><a href="../contaUsuario.html">Perfil</a></li>
+                  <li><a href="../../sitemalogin/form_login.html">Login</a></li>
+                  <li><a href="../../sitemalogin/form_cadastro.html">Cadastrar</a></li>
                 </ul>
               </li>
               <!-- /Parte Cadastro -->
@@ -126,27 +97,25 @@
     </div>
     <!-- End Top Background Image Wrapper -->
 
-		<?php
+	<?php
       echo "<h1 align='center'>$msg</h1>";
 
-      //Selecione todos os usuarios
-      $sql = mysqli_query($conexao, "SELECT * FROM tbl_tf_usuario ORDER BY cod DESC limit 1");
+      //Selecione todos os comentarios
+      $sql = mysqli_query($conexao, "SELECT * FROM tabela_comentario");
 
-      //Exibe as informações de cada usuario
-      while ($usuario = mysqli_fetch_object($sql)) {
+      //Exibe as informações de cada comentarios
+      while ($comentar = mysqli_fetch_object($sql)) {
         //Exibimos as informações
         echo "<table>";
         echo "<tr><td><b>Seus Dados</b></td></tr>";
-        echo "<tr><td><b>Nome:</b> " . $usuario->Nome . "</td></tr>";
-        echo "<tr><td><b>CPF:</b> " . $usuario->CPF . "</td></tr>";
-        echo "<tr><td><b>E-mail:</b> " . $usuario->Email . "</td></tr>";
-        echo "<tr><td><b>Telefone:</b> " . $usuario->Telefone . "</td></tr>";
-        echo "</table>";		
+        echo "<tr><td><b>Nome:</b> " . $comentar->email_coment . "</td></tr>";
+        echo "<tr><td><b>CPF:</b> " . $comentar->cpf . "</td></tr>";
+        echo "<tr><td><b>E-mail:</b> " . $comentar->coment . "</td></tr>";		
       }
 
         //Encerra conexão
         require "desconectar.php";
-		?>
+	?>
     
     <!-- FOOTER -->		
     <div class="wrapper row4">

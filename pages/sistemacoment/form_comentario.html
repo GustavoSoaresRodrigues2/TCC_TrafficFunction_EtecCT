@@ -11,14 +11,18 @@ Licence URI: https://www.os-templates.com/template-terms
 <!-- To declare your language - read more here: https://www.w3.org/International/questions/qa-html-language-declarations -->
 
 <head>
-<title>Perfil</title>
+<title>TrafficFunction</title>
 <meta charset="utf-8">
+<meta name="author" content="TrafficFunction">
+<meta name="description" content="Site para divilguar nossa empresa">
+<meta name="keywords" content="transito, semaforos, html">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<link href="../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
+<link href="../../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
 </head>
 <body id="top">
+
 <!-- Top Background Image Wrapper -->
-<div class="bgded overlay light" style="background-image:url('../images/backgrounds/background_home.jpeg');"> 
+<div class="bgded overlay light" style="background-image:url('../../images/backgrounds/background_home.jpeg');"> 
   <div class="wrapper row0">
     <div id="topbar" class="hoc clear"> 
       <div class="fl_left"> 
@@ -33,28 +37,27 @@ Licence URI: https://www.os-templates.com/template-terms
       </div>
     </div>
   </div>
-  
+ 
   <!-- NavBar -->
   <div class="wrapper row1">
     <header id="header" class="hoc clear"> 
       <div id="logo" class="fl_left">
 
         <!-- LogoImagem -->
-        <h1 id="logo_top"><a href="../index.html"><img src="../images/logo_trafficfunction.png"></a></h1>
+        <h1 id="logo_top"><a href="../index.html"><img src="../../images/logo_trafficfunction.png" alt=""></a></h1>
         <!-- /LogoImagem -->
 
       </div>
       <nav id="mainav" class="fl_right">
         <ul class="clear">
-
-          <li><a href="../index.html">Página Inicial</a></li>
+          <li><a href="../../index.html">Página Inicial</a></li>
 
           <!-- Parte Guia -->
           <li><a class="drop">Guias</a>
             <ul>
-              <li><a href="../pages/empresa.html">Quem Somos?</a></li>
-              <li><a href="#">Mapa de infrações</a></li>
-              <li><a href="#">Comentários</a></li>
+              <li><a href="../quemSomos.html">Quem Somos?</a></li>
+              <li><a href="../mapaInflacoes.html">Mapa de infrações</a></li>
+              <li><a href="../form_comentario.html">Comentários</a></li>
             </ul>
           </li>
           <!-- /Parte Guia -->
@@ -62,13 +65,12 @@ Licence URI: https://www.os-templates.com/template-terms
           <!-- Parte Cadastro -->
           <li><a class="drop">Conta</a>
             <ul>
-              <li><a href="pages/contaUsuario.html">Perfil</a></li>
-              <li><a href="../sitemalogin/form_login.html">Login</a></li>
-              <li><a href="../sitemalogin/form_cadastro.html">Cadastrar</a></li>
+              <li><a href="../contaUsuario.html">Perfil</a></li>
+              <li><a href="../../sitemalogin/form_login.html">Login</a></li>
+              <li><a href="../../sitemalogin/form_cadastro.html">Cadastrar</a></li>
             </ul>
           </li>
           <!-- /Parte Cadastro -->
-
           
           <li><a href="#">Nosso Serviços</a></li>
           <li><a href="#">Suporte</a></li>
@@ -79,27 +81,27 @@ Licence URI: https://www.os-templates.com/template-terms
   <!-- /NavBar -->
 </div>
 <!-- End Top Background Image Wrapper -->
+<br>
 
-<div class="wrapper row3">
-  <main class="hoc container clear"> 
-    <div class="content three_quarter"> 
-      <!-- falando da multa -->
-      <h1>Ultrapassagem Irregular</h1>
-      <img class="imgr borderedbox inspace-5" src="../images/mostrar_multas/exe_ultrapassagem.gif">
-        <p>Segundo o <u><b>art. 203 do Código de Trânsito Brasileiro</b></u>, a penalidade por ultrapassar em faixa dupla prevê multa gravíssima com fator multiplicador de 5 vezes.</p>
-        <p>O Condutor que realizar essa manobra indevida, portanto, deverá desembolsar uma quantia de <u><b>R$ 1.467,35</b></u>.</p> 
-        </p>
-            O valor da multa por ultrapassar em faixa dupla não é baixo. Afinal, trata-se de uma das condutas <u><b>mais perigosas no trânsito</b></u>. 
-            As ultrapassagens em locais proibidos ou sem os devidos cuidados são o <u><b>principal fator de morte</b></u> em rodovias do Brasil.
-        <p>
-        </p>
-            Esses acidentes acontecem, é claro, nas vias de pista simples, em que o motorista, para efetuar uma manobra de ultrapassagem, precisa trafegar temporariamente pela contramão.
-            Esse movimento jamais pode ser feito abruptamente. Deve ser cuidadosamente pensado e executado para minimizar os riscos.
-      <!-- / falando da multa -->
-
-    </div>
-  </main>
+<div class="wrapper row2 bgded overlay" style="background-image:url('../../images/backgrounds/background_servicos.jpg');">
+    <section class="hoc cta clear"> 
+      <div class="sectiontitle">
+        <h6 class="heading">Mostre a sua opinião!</h6>
+        <p>Escreva a sua experiencia sobre os nossos serviços</p>
+      </div>
+      <form method="post" action="inserir_comentario.php">
+        <fieldset>
+          <center>
+            <input type="text" name="cpf" placeholder="Escreva seu CPF" style="width: 5cm;">
+            <input type="text" name="email_coment" placeholder="Escreva seu Email" style="width: 8cm;">
+            <input type="text" name="coment" placeholder="Escreva seu comentario" style="">
+            <button type="submit" value="submit">Enviar</button>
+          </center>
+        </fieldset>
+      </form>
+    </section>
 </div>
+<br>
 
 <!-- FOOTER -->
 <div class="wrapper row4">
@@ -108,7 +110,7 @@ Licence URI: https://www.os-templates.com/template-terms
       <h6 class="heading">Motivação</h6>
       <p>Não é de hoje que encontramos problemas no transito que atrapalham nosso dia a dia.</p>
       <p>Diversas irregularidades de trânsito (incluindo semáforos, placas danificadas &hellip;</p>
-      <p class="nospace"><a href="../pages/quemSomos.html">Ler mais</a></p>
+      <p class="nospace"><a href="../quemSomos.html">Ler mais</a></p>
     </article>
     <div class="one_third">
       <h6 class="heading">Nossos Contatos</h6>
@@ -131,10 +133,10 @@ Licence URI: https://www.os-templates.com/template-terms
     <div class="one_quarter">
       <h6 class="heading">Nossos serviços</h6>
       <ul class="nospace linklist">
-        <li><a href="#">App Mobile</a></li>
-        <li><a href="#">Mapa</a></li>
-        <li><a href="#">Comentarios</a></li>
-        <li><a href="quemSomos.html">Nossa Empresa</a></li>
+        <li><a href="#" download>App Mobile</a></li>
+        <li><a href="../mapaInflacoes.html">Mapa</a></li>
+        <li><a href="../comentario.html">Comentarios</a></li>
+        <li><a href="../quemSomos.html">Nossa Empresa</a></li>
         <li><a href="#">Suporte</a></li>
       </ul>
     </div>
@@ -142,14 +144,16 @@ Licence URI: https://www.os-templates.com/template-terms
 </div>
 <div class="wrapper row5">
   <div id="copyright" class="hoc clear"> 
-    <p class="fl_left">Copyright &copy; 2022 - Todos os Direitos Reservados a TrafficFunction<a href="#"></a></p>
+    <p class="fl_left">Copyright &copy; 2022 - Todos os Direitos Reservados a TrafficFunciton<a href="#"></a></p>
   </div>
 </div>
 
-<!-- JAVASCRIPTS -->
-<script src="../layout/scripts/jquery.min.js"></script>
-<script src="../layout/scripts/jquery.backtotop.js"></script>
-<script src="../layout/scripts/jquery.mobilemenu.js"></script>
 
+<a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>
+
+<!-- JAVASCRIPTS -->
+<script src="../../layout/scripts/jquery.min.js"></script>
+<script src="../../layout/scripts/jquery.backtotop.js"></script>
+<script src="../../layout/scripts/jquery.mobilemenu.js"></script>
 </body>
 </html>
