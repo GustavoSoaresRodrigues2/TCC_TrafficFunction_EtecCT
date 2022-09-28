@@ -39,8 +39,8 @@
 			//Se estiver correto a sessão fica yes
 			session_start();
       $_SESSION["Login"] = "SIM";
-      $_SESSION["EmailUser"] = $emailBD;
-      $_SESSION["NomeUser"] = $nomeBD;
+      $_SESSION["emailUser"] = $emailBD;
+      $_SESSION["nomeUser"] = $nomeBD;
       $msg_body = "<br><h1 align='center'>Você está logado!</h1>";
       echo "<br>";
       $msg_body = $msg_body . "<p align='center'>Podemos começar a iluminar!</p>";
@@ -48,7 +48,7 @@
 		else {
 			//Se estiver errado fica NO
 			session_start();
-			$_SESSION["Login"] = "NÃO";
+			$_SESSION["Login"] = "SIM";
 			$msg_body = "<h1 align='center'>Você NÃO está logado, veja se fez o Cadastro</h1>";
 			$msg_body = $msg_body . "<p align='center'><a href='form_login.html'>Tentar Novamente</a></p>";
 		}
