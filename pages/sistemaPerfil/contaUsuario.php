@@ -1,72 +1,12 @@
-<?php 
-	//Verifica se o email digitado é nulo
-	if ($_POST["email_coment"] == null) {
-
-	//Usuario e enviado de volta ao formulario
-	header("Location: form_comentario.html");
-
-	}
-	else {
-
-		//O usuario e senha digitados são colocados e suas respectivas variaveis
-		$comentDigitado = $_POST["coment"];
-		$emailDigitada = $_POST["email_coment"];
-	}
-
-	//Conexão com o Banco de Dados
-	require "conectar.php";
-
-	//Faz uma consulta a tabela_comentario e retorna a linha que contem o comentario digitado
-	$strSQL = "SELECT coment, email_coment FROM tabela_comentario WHERE email_coment = '$emailDigitado'";
-
-	//Executa a consulta(query) a variavel $consulta contem o resultado da consulta
-	$consulta = mysqli_query($conexao, $strSQL);
-
-	//Loop pelo resultado da $consulta
-	//Cada linha vai para um array ($row) usuario mysql_fetch_array
-	//O usuario e senha encontrados no BD são armazenados nas novas variaveis
-	while ($linha = mysqli_fetch_array($consulta)) {
-    $emailBD = $linha["email_coment"];
-		$comentBD = $linha["coment"];
-	}
-
-	//Encerra conexão
-	require "desconectar.php";
-
-		//Verifica usuario e senha
-		if ($emailDigitado == $emailBD && $comentDigitada == $comentBD) {
-
-			//Se estiver correto a sessão fica yes
-			session_start();
-      $_SESSION["Login"] = "SIM";
-      $_SESSION["EmailUser"] = $emailBD;
-      $msg_body = "<br><h1 align='center'>Comentário Feito!</h1>";
-      echo "<br>";
-      $msg_body = $msg_body . "<p align='center'>Agradeçemos a sua Opinião!</p>";
-		}
-		else {
-			//Se estiver errado fica NO
-			session_start();
-			$_SESSION["Login"] = "NÃO";
-			$msg_body = "<h1 align='center'>Não foi possivel fazer o Comentário!</h1>";
-			$msg_body = $msg_body . "<p><a href='form_comentario.html'>Tente Novamente</a></p>";
-		}
-?>
-
 <!DOCTYPE html>
 <html lang="br">
   <head>
-    <title>TrafficFunction</title>
+    <title>Perfil</title>
     <meta charset="utf-8">
-    <meta name="author" content="TrafficFunction">
-    <meta name="description" content="Site para divilguar nossa empresa">
-    <meta name="keywords" content="transito, semaforos, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link href="../../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
   </head>
-
   <body id="top">
-
     <!-- Top Background Image Wrapper -->
     <div class="bgded overlay light" style="background-image:url('../../images/backgrounds/background_home.jpeg');"> 
       <div class="wrapper row0">
@@ -75,7 +15,7 @@
             <ul class="nospace">
 
               <!-- Contato -->
-              <li><i class="fa fa-phone"></i> +55 (11) xxxxx-xxxx</li>
+              <li><i class="fa fa-phone"></i> +55 (11) 8552-7890</li>
               <li><i class="fa fa-envelope-o"></i> trafficfunction@gmail.com</li>
               <!-- /Contato -->
 
@@ -83,26 +23,28 @@
           </div>
         </div>
       </div>
-    
+      
       <!-- NavBar -->
       <div class="wrapper row1">
         <header id="header" class="hoc clear"> 
           <div id="logo" class="fl_left">
 
             <!-- LogoImagem -->
-            <h1 id="logo_top"><a href="../../index.html"><img src="../../images/logo_trafficfunction.png" alt=""></a></h1>
+            <h1 id="logo_top"><a href="../../index.html"><img src="../../images/logo_trafficfunction.png"></a></h1>
             <!-- /LogoImagem -->
 
           </div>
           <nav id="mainav" class="fl_right">
             <ul class="clear">
 
+              <li><a href="../../index.html">Página Inicial</a></li>
+
               <!-- Parte Guia -->
               <li><a class="drop">Guias</a>
                 <ul>
                   <li><a href="../quemSomos.html">Quem Somos?</a></li>
                   <li><a href="../mapaInflacoes.html">Mapa de infrações</a></li>
-                  <li><a href="../comentario.html">Comentários</a></li>
+                  <li><a href="../sistemaComentar/form_comentario.php">Comentários</a></li>
                 </ul>
               </li>
               <!-- /Parte Guia -->
@@ -110,15 +52,14 @@
               <!-- Parte Cadastro -->
               <li><a class="drop">Conta</a>
                 <ul>
-                  <li><a href="../contaUsuario.html">Perfil</a></li>
-                  <li><a href="../../sitemalogin/form_login.html">Login</a></li>
-                  <li><a href="../../sitemalogin/form_cadastro.html">Cadastrar</a></li>
+                  <li><a href="../contaUsuario.php">Perfil</a></li>
+                  <li><a href="../../sistemaLogin/form_login.html">Login</a></li>
+                  <li><a href="../../sistemaLogin/form_cadastro.html">Cadastrar</a></li>
+                  <li><a href="../../sistemaLogin/logoff.php">Sair</a></li>
                 </ul>
               </li>
               <!-- /Parte Cadastro -->
-              
-              <li><a href="#">Nosso Serviços</a></li>
-              <li><a href="#">Suporte</a></li>
+
             </ul>
           </nav>
         </header>
@@ -127,27 +68,53 @@
     </div>
     <!-- End Top Background Image Wrapper -->
 
-    <?php
-        echo "<h1 align='center'>$msg</h1>";
-        //Selecione todos os usuarios
-        $sql = mysqli_query($conexao, "SELECT * FROM tabela_comentario");
+    <div class="wrapper row3">
+      <main class="hoc container clear"> 
+        <!-- Parte Esquerda -->
+        <div class="sidebar one_quarter first">
+        <!-- Perfil pessoa -->
 
-        //Exibe as informações de cada usuario
-        while ($usuario = mysqli_fetch_object($sql)) {
-          //Exibimos as informações
-          echo "<table>";
-          echo "<tr><td><b>Seu Comentário</b></td></tr>";
-          echo "<tr><td><b>Nome:</b> " . $comentar->email_coment . "</td></tr>";
-          echo "<tr><td><b>CPF:</b> " . $comentar->cpf . "</td></tr>";
-          echo "<tr><td><b>Email:</b> " . $comentar->coment . "</td></tr>";
-          echo "<table>";		
-        }
+        <?php
+            //Faz uma consulta a dados_usuarios e retorna a linha que contem o cliente digitado
+            $strSQL = "SELECT Nome, Telefone, Email FROM dados_usuarios";
 
-        //Encerra conexão
-        require "desconectar.php";
+            //Exibimos as informações
+            //Executa a consulta(query) a variavel $consulta contem o resultado da consulta
+            $consulta = mysqli_query($conexao, $strSQL);
 
-    ?>
+                //Cada linha vai para um array ($row) usando mysql_fetch_array
+                while($linha = mysqli_fetch_array($consulta)) {
+                    echo "<li>Nome: " . $linha['Nome'] . "</li>";
+                    echo "<li>Telefone: " . $linha['Telefone'] . "</li>";
+                    echo "<li>E-mail: " . $linha['Email'] . "</li>";
+                }
 
+            //Encerra conexão
+            require "desconectar.php";
+        ?>
+        <!-- / Perfil pessoa -->
+
+        </div>
+        <!-- Parte Esquerda -->
+        <div class="content three_quarter"> 
+          <!-- Comentario sobre ela msm -->
+          <h1>Titulo que ela coloca</h1>
+          <img class="imgr borderedbox inspace-5" src="../../images/60x60.png">
+          <p>texto q ela escrever xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
+          <p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+            xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+          </p>
+          <p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+            xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+          </p>
+          <p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+            xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+          </p>
+          <p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
+          <!-- / Comentario sobre ela msm -->
+        </div>
+      </main>
+    </div>
     <!-- FOOTER -->
     <div class="wrapper row4">
       <footer id="footer" class="hoc clear"> 
@@ -180,23 +147,18 @@
           <ul class="nospace linklist">
             <li><a href="#" download>App Mobile</a></li>
             <li><a href="../mapaInflacoes.html">Mapa</a></li>
-            <li><a href="../comentario.html">Comentarios</a></li>
+            <li><a href="../sistemaComentar/form_comentario.php">Comentarios</a></li>
             <li><a href="../quemSomos.html">Nossa Empresa</a></li>
-            <li><a href="#">Suporte</a></li>
           </ul>
         </div>
       </footer>
     </div>
     <!-- /FOOTER -->
-
     <div class="wrapper row5">
       <div id="copyright" class="hoc clear"> 
-        <p class="fl_left">Copyright &copy; 2022 - Todos os Direitos Reservados a TrafficFunciton</p>
+        <p class="fl_left">Copyright &copy; 2022 - Todos os Direitos Reservados a TrafficFunction</p>
       </div>
     </div>
-
-    <a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>
-
     <!-- JAVASCRIPTS -->
     <script src="../../layout/scripts/jquery.min.js"></script>
     <script src="../../layout/scripts/jquery.backtotop.js"></script>

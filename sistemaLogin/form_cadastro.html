@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="br">
+    
   <head>
     <title>TF | Cadastro</title>
     <meta charset="utf-8">
@@ -10,42 +11,42 @@
     <link href="../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
     <style type="text/css">
 
-      /* DEMO ONLY */
-      .container .demo{text-align:center;}
-      .container .demo div{padding:8px 0;}
-      .container .demo div:nth-child(odd){color:#FFFFFF; background:#CCCCCC;}
-      .container .demo div:nth-child(even){color:#FFFFFF; background:#979797;}
-      @media screen and (max-width:900px){.container .demo div{margin-bottom:0;}}
-      /* DEMO ONLY */
+        /* DEMO ONLY */
+        .container .demo{text-align:center;}
+        .container .demo div{padding:8px 0;}
+        .container .demo div:nth-child(odd){color:#FFFFFF; background:#CCCCCC;}
+        .container .demo div:nth-child(even){color:#FFFFFF; background:#979797;}
+        @media screen and (max-width:900px){.container .demo div{margin-bottom:0;}}
+        /* DEMO ONLY */
 
-      .form_cadastro{
-        width: 80%;
-        height: 100%;
-        background-color:#fdd05e;
-        border-radius: 15px;
-        padding: 10px;
-      }
-      .form_cadastro h1, label{
-        color: #FFFFFF;
-        font-family: "Arial";
-        
-      }
-      .form_cadastro h1{
-        font-size: 7mm;
-      }
-      .form_cadastro label{
-        margin-top: 10px;
-        font-size:5mm;
-      }
-      .form_cadastro input{ 
-        width: 90%;
-        height: 40px;
-        border: none;
-        outline: none;
-      }
-      #Email{
-        margin-bottom: 20px;
-      }
+        .form_cadastro{
+            width: 80%;
+            height: 100%;
+            background-color:#fdd05e;
+            border-radius: 15px;
+            padding: 10px;
+        }
+        .form_cadastro h1, label{
+            color: #FFFFFF;
+            font-family: "Arial";
+            
+        }
+        .form_cadastro h1{
+            font-size: 7mm;
+        }
+        .form_cadastro label{
+            margin-top: 10px;
+            font-size:5mm;
+        }
+        .form_cadastro input{ 
+            width: 90%;
+            height: 40px;
+            border: none;
+            outline: none;
+        }
+        #Email{
+            margin-bottom: 20px;
+        }
 
     </style>
   </head>
@@ -86,7 +87,7 @@
                 <ul>
                   <li><a href="../pages/quemSomos.html">Quem Somos?</a></li>
                   <li><a href="../pages/mapaInflacoes.html">Mapa de infrações</a></li>
-                  <li><a href="../pages/sistemacoment/form_comentario.html">Comentários</a></li>
+                  <li><a href="../pages/sistemaComentar/form_comentario.php">Comentários</a></li>
                 </ul>
               </li>
               <!-- /Parte Guia -->
@@ -94,15 +95,14 @@
               <!-- Parte Cadastro -->
               <li><a class="drop">Conta</a>
                 <ul>
-                  <li><a href="../pages/contaUsuario.html">Perfil</a></li>
+                  <li><a href="../pages/sistemaPerfil/contaUsuario.php">Perfil</a></li>
                   <li><a href="form_login.html">Login</a></li>
                   <li><a href="form_cadastro.html">Cadastrar</a></li>
+                  <li><a href="logoff.php">Sair</a></li>
                 </ul>
               </li>
               <!-- /Parte Cadastro -->
-              
-              <li><a href="">Nosso Serviços</a></li>
-              <li><a href="">Suporte</a></li>
+
             </ul>
           </nav>
         </header>
@@ -191,9 +191,8 @@
           <ul class="nospace linklist">
             <li><a href="#" download>App Mobile</a></li>
             <li><a href="../pages/mapaInflacoes.html">Mapa</a></li>
-            <li><a href="#">Comentarios</a></li>
+            <li><a href="../pages/sistemaComentar/form_comentario.php">Comentarios</a></li>
             <li><a href="../pages/quemSomos.html">Nossa Empresa</a></li>
-            <li><a href="#">Suporte</a></li>
           </ul>
         </div>
       </footer>

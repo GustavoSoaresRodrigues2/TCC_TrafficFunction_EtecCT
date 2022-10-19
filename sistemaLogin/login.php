@@ -17,7 +17,7 @@
 	require "conectar.php";
 
 	//Faz uma consulta a tbl_cliente e retorna a linha que contem o usuario digitado
-	$strSQL = "SELECT Email, Senha FROM dados_usuarios where Email = '$emailDigitado'";
+	$strSQL = "SELECT Email, Senha FROM dados_usuarios where Email = '$_SESSION["emailUser"]'";
 
 	//Executa a consulta(query) a variavel $consulta contem o resultado da consulta
 	$consulta = mysqli_query($conexao, $strSQL);
@@ -26,7 +26,9 @@
 	//Cada linha vai para um array ($row) usuario mysql_fetch_array
 	//O usuario e senha encontrados no BD são armazenados nas novas variaveis
 	while ($linha = mysqli_fetch_array($consulta)) {
-    $emailBD = $linha["Email"];
+        $nomeBD = $linha["Nome"];
+        $cpfBD = $linha["CPF"];
+        $emailBD = $linha["Email"];
 		$senhaBD = $linha["Senha"];
 	}
 
@@ -38,24 +40,29 @@
 
 			//Se estiver correto a sessão fica yes
 			session_start();
-      $_SESSION["Login"] = "SIM";
-      $_SESSION["emailUser"] = $emailBD;
-      $_SESSION["nomeUser"] = $nomeBD;
-      $msg_body = "<br><h1 align='center'>Você está logado!</h1>";
-      echo "<br>";
-      $msg_body = $msg_body . "<p align='center'>Podemos começar a iluminar!</p>";
+            $_SESSION["Login"] = "SIM";
+            $_SESSION["emailUser"] = $emailBD;
+            $_SESSION["nomeUser"] = $nomeBD;
+            $_SESSION["cpfUser"] = $cpfBD;
+            
+            $msg_body = "<br><h1 align='center'>Você está logado!</h1>";
+            echo "<br>";
+            $msg_body = $msg_body . "<p align='center'>Podemos começar a iluminar!</p>";
 		}
 		else {
 			//Se estiver errado fica NO
 			session_start();
-			$_SESSION["Login"] = "SIM";
+			$_SESSION["Login"] = "NÃO";
 			$msg_body = "<h1 align='center'>Você NÃO está logado, veja se fez o Cadastro</h1>";
 			$msg_body = $msg_body . "<p align='center'><a href='form_login.html'>Tentar Novamente</a></p>";
 		}
+
+
 ?>
 
 <!DOCTYPE html>
 <html lang="br">
+
   <head>
     <title>TF | Login</title>
     <meta charset="UTF-8">
@@ -106,7 +113,7 @@
                 <ul>
                   <li><a href="quemSomos.html">Quem Somos?</a></li>
                   <li><a href="mapaInflacoes.html">Mapa de infrações</a></li>
-                  <li><a href="../pages/sistemacoment/form_comentario.html">Comentários</a></li>
+                  <li><a href="../pages/sistemaComentar/form_comentario.php">Comentários</a></li>
                 </ul>
               </li>
               <!-- /Parte Guia -->
@@ -114,15 +121,14 @@
               <!-- Parte Cadastro -->
               <li><a class="drop">Conta</a>
                 <ul>
-                  <li><a href="../pages/contaUsuario.html">Perfil</a></li>
+                  <li><a href="../pages/sistemaPerfil/contaUsuario.php">Perfil</a></li>
                   <li><a href="form_login.html">Login</a></li>
                   <li><a href="form_cadastro.html">Cadastrar</a></li>
+                  <li><a href="logoff.php">Sair</a></li>
                 </ul>
               </li>
               <!-- /Parte Cadastro -->
               
-              <li><a href="">Nosso Serviços</a></li>
-              <li><a href="">Suporte</a></li>
             </ul>
           </nav>
         </header>
@@ -171,9 +177,8 @@
           <ul class="nospace linklist">
             <li><a href="#" download>App Mobile</a></li>
             <li><a href="../pages/mapaInflacoes.html">Mapa</a></li>
-            <li><a href="#">Comentarios</a></li>
+            <li><a href="../pages/sistemaComentar/form_comentario.php">Comentarios</a></li>
             <li><a href="../pages/quemSomos.html">Nossa Empresa</a></li>
-            <li><a href="#">Suporte</a></li>
           </ul>
         </div>
       </footer>
