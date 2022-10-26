@@ -130,7 +130,7 @@
             <ul class="nospace linklist">
                 <li><a href="#" download>App Mobile</a></li>
                 <li><a href="../mapaInflacoes.html">Mapa</a></li>
-                <li><a href="form_comentario.php">Comentarios</a></li>
+                <li><a href="comentario.html">Comentarios</a></li>
                 <li><a href="../quemSomos.html">Nossa Empresa</a></li>
             </ul>
             </div>

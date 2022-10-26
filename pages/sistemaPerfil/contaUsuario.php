@@ -1,3 +1,13 @@
+<?php
+    //Conexão com o Banco de Dados
+	require "../../sistemaLogin/conectar.php";
+    //Iniciar a sessão que foi aberta
+    session_start();
+    //Se o usuario não estiver logado manda ele para o formulario de login
+    if($_SESSION["Login"] != "SIM") {
+        header("Location: ../../sistemaLogin/form_login.html");
+    }
+?>
 <!DOCTYPE html>
 <html lang="br">
   <head>
@@ -5,6 +15,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link href="../../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
+    <style>
+        .btn {
+            width: 145px;
+        }
+    </style>
   </head>
   <body id="top">
     <!-- Top Background Image Wrapper -->
@@ -52,7 +67,7 @@
               <!-- Parte Cadastro -->
               <li><a class="drop">Conta</a>
                 <ul>
-                  <li><a href="../contaUsuario.php">Perfil</a></li>
+                  <li><a href="contaUsuario.php">Perfil</a></li>
                   <li><a href="../../sistemaLogin/form_login.html">Login</a></li>
                   <li><a href="../../sistemaLogin/form_cadastro.html">Cadastrar</a></li>
                   <li><a href="../../sistemaLogin/logoff.php">Sair</a></li>
@@ -73,44 +88,78 @@
         <!-- Parte Esquerda -->
         <div class="sidebar one_quarter first">
         <!-- Perfil pessoa -->
+        <h6>Seu Perfil</h6>
+            <nav class="sdb_holder">
+                <?php
+                    $strSQL = "SELECT Datanasc, Locomocao, Facebook, Instagram, Cidade FROM dados_perfil WHERE codUsuario ='" . $_SESSION['codUser'] . "'";
+                    $consulta = mysqli_query($conexao, $strSQL);
 
-        <?php
+                    while($linha = mysqli_fetch_array($consulta)) {
+                        
+                    echo"
+                        <table>
+                            <tr>
+                                <td>
+                                    Data Nasc: " . $linha['Datanasc'] . "
+                                </td>
+                            </tr
+                            <tr>
+                                <td>
+                                Meio de Locomoção: " . $linha['Locomocao'] . "
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                Facebook: " . $linha['Facebook'] . "
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                Instagram: " . $linha['Instagram'] . "
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                Cidade: " . $linha['Cidade'] . "
+                                </td>
+                            </tr>
+                        </table>
+                        ";
+                    }
+
+        ?>
+        <a href="">
+            <input class="btn" value="Editar Perfil">
+        </a>
+            </nav>
+        <!-- / Perfil pessoa -->
+        </div>
+        <!-- Parte Esquerda -->
+        <div class="content three_quarter"> 
+          <!-- Comentario sobre ela msm -->
+            <?php
             //Faz uma consulta a dados_usuarios e retorna a linha que contem o cliente digitado
-            $strSQL = "SELECT Nome, Telefone, Email FROM dados_usuarios";
-
+            $strSQL = "SELECT cod, Nome, Telefone, Email FROM dados_usuarios WHERE Email = '". $_SESSION['emailUser'] . "'";
             //Exibimos as informações
+            echo "<table><tr><td>COD</td><td>Nome</td><td>Telefone</td><td>E-mail</td></tr>";
+            //<td>Excluir</td>
             //Executa a consulta(query) a variavel $consulta contem o resultado da consulta
             $consulta = mysqli_query($conexao, $strSQL);
 
                 //Cada linha vai para um array ($row) usando mysql_fetch_array
                 while($linha = mysqli_fetch_array($consulta)) {
-                    echo "<li>Nome: " . $linha['Nome'] . "</li>";
-                    echo "<li>Telefone: " . $linha['Telefone'] . "</li>";
-                    echo "<li>E-mail: " . $linha['Email'] . "</li>";
+                    echo "<tr>";
+                    echo "<td>" . $linha['cod'] . "</td>";
+                    echo "<td>" . $linha['Nome'] . "</td>";
+                    echo "<td>" . $linha['Telefone'] . "</td>";
+                    echo "<td>" . $linha['Email'] . "</td>";
+                    echo "</tr>";	
                 }
+                echo "</table";	
 
-            //Encerra conexão
-            require "desconectar.php";
+                //Encerra conexão
+                require "../../sistemaLogin/desconectar.php";
         ?>
-        <!-- / Perfil pessoa -->
-
-        </div>
-        <!-- Parte Esquerda -->
-        <div class="content three_quarter"> 
-          <!-- Comentario sobre ela msm -->
-          <h1>Titulo que ela coloca</h1>
-          <img class="imgr borderedbox inspace-5" src="../../images/60x60.png">
-          <p>texto q ela escrever xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
-          <p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-            xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-          </p>
-          <p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-            xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-          </p>
-          <p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-            xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-          </p>
-          <p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
           <!-- / Comentario sobre ela msm -->
         </div>
       </main>

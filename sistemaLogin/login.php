@@ -17,7 +17,7 @@
 	require "conectar.php";
 
 	//Faz uma consulta a tbl_cliente e retorna a linha que contem o usuario digitado
-	$strSQL = "SELECT Email, Senha FROM dados_usuarios where Email = '$_SESSION["emailUser"]'";
+	$strSQL = "SELECT Email, Senha FROM dados_usuarios where Email = '$emailDigitado'";
 
 	//Executa a consulta(query) a variavel $consulta contem o resultado da consulta
 	$consulta = mysqli_query($conexao, $strSQL);
@@ -26,6 +26,7 @@
 	//Cada linha vai para um array ($row) usuario mysql_fetch_array
 	//O usuario e senha encontrados no BD são armazenados nas novas variaveis
 	while ($linha = mysqli_fetch_array($consulta)) {
+        $codBD = $linha["cod"];
         $nomeBD = $linha["Nome"];
         $cpfBD = $linha["CPF"];
         $emailBD = $linha["Email"];
@@ -41,9 +42,9 @@
 			//Se estiver correto a sessão fica yes
 			session_start();
             $_SESSION["Login"] = "SIM";
+            $_SESSION["codUser"] = $codBD;
             $_SESSION["emailUser"] = $emailBD;
             $_SESSION["nomeUser"] = $nomeBD;
-            $_SESSION["cpfUser"] = $cpfBD;
             
             $msg_body = "<br><h1 align='center'>Você está logado!</h1>";
             echo "<br>";
@@ -56,8 +57,6 @@
 			$msg_body = "<h1 align='center'>Você NÃO está logado, veja se fez o Cadastro</h1>";
 			$msg_body = $msg_body . "<p align='center'><a href='form_login.html'>Tentar Novamente</a></p>";
 		}
-
-
 ?>
 
 <!DOCTYPE html>

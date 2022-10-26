@@ -35,16 +35,16 @@
                 table {
                 font-size: 20px;
                 margin: 0 auto;
-                width: 70%;
+                width: 40%;
                 padding: 0px;
-                margin-bottom: 10%;
+                margin-bottom: 4%;
                 color: black;
                 }
                 table tr {
                 word-spacing: 5px;
                 padding: 0;
                 margin: 0;
-                background-color: #54FF9F;
+                background-color: #E6E6E6;
                 }
                 table td {
                 padding: 5px 15px;
@@ -54,7 +54,7 @@
                 text-align: center;
                 }
                 table tr:nth-child(1) td {
-                background: #0c2e8a;
+                background: #00BFFF;
                 color: white;
                 }
             </style>
@@ -130,7 +130,7 @@
       echo "<h1 align='center'>$msg</h1>";
 
       //Selecione todos os usuarios
-      $sql = mysqli_query($conexao, "SELECT * FROM tbl_tf_usuario ORDER BY cod DESC limit 1");
+      $sql = mysqli_query($conexao, "SELECT * FROM dados_usuarios ORDER BY cod DESC limit 1");
 
       //Exibe as informações de cada usuario
       while ($usuario = mysqli_fetch_object($sql)) {
