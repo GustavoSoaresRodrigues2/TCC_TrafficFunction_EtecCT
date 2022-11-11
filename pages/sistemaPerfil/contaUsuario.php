@@ -88,78 +88,65 @@
         <!-- Parte Esquerda -->
         <div class="sidebar one_quarter first">
         <!-- Perfil pessoa -->
-        <h6>Seu Perfil</h6>
             <nav class="sdb_holder">
-                <?php
-                    $strSQL = "SELECT Datanasc, Locomocao, Facebook, Instagram, Cidade FROM dados_perfil WHERE codUsuario ='" . $_SESSION['codUser'] . "'";
-                    $consulta = mysqli_query($conexao, $strSQL);
-
-                    while($linha = mysqli_fetch_array($consulta)) {
-                        
+            <?php
+                echo"<h6>"$_SESSION['nomeUser']"</h6>";
+                //Faz uma consulta a dados_usuarios e retorna a linha que contem o cliente digitado
+                $strSQL = "SELECT Telefone, Email FROM dados_usuarios WHERE Email = '". $_SESSION['emailUser'] . "'";
+                //<td>Excluir</td>
+                //Executa a consulta(query) a variavel $consulta contem o resultado da consulta
+                $consulta = mysqli_query($conexao, $strSQL);
+                //Cada linha vai para um array ($row) usando mysql_fetch_array
+                while($linha = mysqli_fetch_array($consulta)) {        
+                   //Exibimos as informações          
                     echo"
                         <table>
                             <tr>
                                 <td>
-                                    Data Nasc: " . $linha['Datanasc'] . "
-                                </td>
-                            </tr
-                            <tr>
-                                <td>
-                                Meio de Locomoção: " . $linha['Locomocao'] . "
+                                    E-mail: " . $linha['Email'] . "
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                Facebook: " . $linha['Facebook'] . "
+                                    Contatos: " . $linha['Telefone'] . "
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                Instagram: " . $linha['Instagram'] . "
+                                    Localização: " . $linha['Cidade'] . "
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                Cidade: " . $linha['Cidade'] . "
+                                    Rede social: " . $linha['Telefone'] . "
                                 </td>
                             </tr>
                         </table>
                         ";
                     }
-
-        ?>
-        <a href="">
-            <input class="btn" value="Editar Perfil">
-        </a>
+                //Encerra conexão
+                require "../../sistemaLogin/desconectar.php";        
+            ?>
+            <a href="">
+                <input class="btn" value="Editar Perfil">
+            </a>
             </nav>
         <!-- / Perfil pessoa -->
         </div>
         <!-- Parte Esquerda -->
         <div class="content three_quarter"> 
-          <!-- Comentario sobre ela msm -->
+            <!-- Comentario sobre ela msm -->
             <?php
-            //Faz uma consulta a dados_usuarios e retorna a linha que contem o cliente digitado
-            $strSQL = "SELECT cod, Nome, Telefone, Email FROM dados_usuarios WHERE Email = '". $_SESSION['emailUser'] . "'";
-            //Exibimos as informações
-            echo "<table><tr><td>COD</td><td>Nome</td><td>Telefone</td><td>E-mail</td></tr>";
-            //<td>Excluir</td>
-            //Executa a consulta(query) a variavel $consulta contem o resultado da consulta
-            $consulta = mysqli_query($conexao, $strSQL);
-
-                //Cada linha vai para um array ($row) usando mysql_fetch_array
+                $strSQL = "SELECT cod FROM ocorrencias WHERE Email = '". $_SESSION['emailUser'] . "'";
+                echo "<table><tr><td>Nome</td><td>Telefone</td><td>E-mail</td></tr>";
+                $consulta = mysqli_query($conexao, $strSQL);
                 while($linha = mysqli_fetch_array($consulta)) {
-                    echo "<tr>";
-                    echo "<td>" . $linha['cod'] . "</td>";
-                    echo "<td>" . $linha['Nome'] . "</td>";
-                    echo "<td>" . $linha['Telefone'] . "</td>";
-                    echo "<td>" . $linha['Email'] . "</td>";
-                    echo "</tr>";	
+                            
                 }
-                echo "</table";	
 
                 //Encerra conexão
                 require "../../sistemaLogin/desconectar.php";
-        ?>
+            ?>
           <!-- / Comentario sobre ela msm -->
         </div>
       </main>
