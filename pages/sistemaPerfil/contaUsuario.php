@@ -83,7 +83,7 @@
     </div>
     <!-- End Top Background Image Wrapper -->
 
-    <div class="wrapper row3">
+    <div class="wrapper row5">
       <main class="hoc container clear"> 
         <!-- Parte Esquerda -->
         <div class="sidebar one_quarter first">
@@ -92,7 +92,7 @@
             <?php
                 echo "<h6>" . $_SESSION['nomeUser'] . "</h6>";
                 //Faz uma consulta a dados_usuarios e retorna a linha que contem o cliente digitado
-                $strSQL = "SELECT Email, Telefone FROM dados_usuarios WHERE Email = '" . $_SESSION['emailUser'] . "'";
+                $strSQL = "SELECT cod, Email, Telefone FROM dados_usuarios WHERE Email = '" . $_SESSION['emailUser'] . "'";
                 //Executa a consulta(query) a variavel $consulta contem o resultado da consulta
                 $consulta = mysqli_query($conexao, $strSQL);
                 //Cada linha vai para um array ($row) usando mysql_fetch_array
@@ -112,13 +112,15 @@
                             </tr>
                         </table>
                         ";
+                    
                     }
+
+                echo "<a class='btn' value='editar-pefil' href=form_ver_user.php?codigo=" . $_SESSION['codUser'] . ">Editar Perfil</a>";
+                
                 //Encerra conexão
-                require "../../sistemaLogin/desconectar.php";        
+                require "../../sistemaLogin/desconectar.php";       
             ?>
-            
-                <button class="btn" value="Editar Perfil">Editar Perfil</button>
-            
+                    
             </nav>
         <!-- / Perfil pessoa -->
         </div>
