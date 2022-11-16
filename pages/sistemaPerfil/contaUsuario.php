@@ -90,35 +90,24 @@
         <!-- Perfil pessoa -->
             <nav class="sdb_holder">
             <?php
-                echo"<h6>"$_SESSION['nomeUser']"</h6>";
+                echo "<h6>" . $_SESSION['nomeUser'] . "</h6>";
                 //Faz uma consulta a dados_usuarios e retorna a linha que contem o cliente digitado
-                $strSQL = "SELECT Telefone, Email FROM dados_usuarios WHERE Email = '". $_SESSION['emailUser'] . "'";
-                //<td>Excluir</td>
+                $strSQL = "SELECT Email, Telefone FROM dados_usuarios WHERE Email = '" . $_SESSION['emailUser'] . "'";
                 //Executa a consulta(query) a variavel $consulta contem o resultado da consulta
                 $consulta = mysqli_query($conexao, $strSQL);
                 //Cada linha vai para um array ($row) usando mysql_fetch_array
                 while($linha = mysqli_fetch_array($consulta)) {        
                    //Exibimos as informações          
-                    echo"
+                    echo "
                         <table>
                             <tr>
                                 <td>
-                                    E-mail: " . $linha['Email'] . "
+                                    E-mail: ". $linha['Email'] ."
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    Contatos: " . $linha['Telefone'] . "
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Localização: " . $linha['Cidade'] . "
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Rede social: " . $linha['Telefone'] . "
+                                   Contatos: ". $linha['Telefone'] ."
                                 </td>
                             </tr>
                         </table>
@@ -127,26 +116,16 @@
                 //Encerra conexão
                 require "../../sistemaLogin/desconectar.php";        
             ?>
-            <a href="">
-                <input class="btn" value="Editar Perfil">
-            </a>
+            
+                <button class="btn" value="Editar Perfil">Editar Perfil</button>
+            
             </nav>
         <!-- / Perfil pessoa -->
         </div>
         <!-- Parte Esquerda -->
         <div class="content three_quarter"> 
             <!-- Comentario sobre ela msm -->
-            <?php
-                $strSQL = "SELECT cod FROM ocorrencias WHERE Email = '". $_SESSION['emailUser'] . "'";
-                echo "<table><tr><td>Nome</td><td>Telefone</td><td>E-mail</td></tr>";
-                $consulta = mysqli_query($conexao, $strSQL);
-                while($linha = mysqli_fetch_array($consulta)) {
-                            
-                }
-
-                //Encerra conexão
-                require "../../sistemaLogin/desconectar.php";
-            ?>
+  
           <!-- / Comentario sobre ela msm -->
         </div>
       </main>
