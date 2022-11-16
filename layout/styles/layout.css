@@ -198,7 +198,7 @@ nav ul, nav ol{margin:0; padding:0; list-style:none;}
 #breadcrumb .heading{margin:0; font-size:1.6rem;}
 
 /* Sidebar Navigation */
-.sidebar nav{display:block; width:100%;}
+.sidebar nav{display:block; width:120%;}
 .sidebar nav li{margin:0 0 3px 0; padding:0;}
 .sidebar nav a{display:block; position:relative; margin:0; padding:5px 10px 5px 15px; text-decoration:none; border:solid; border-width:0 0 0px 0;}
 
@@ -285,9 +285,9 @@ input:focus, textarea:focus, *:required:focus{border-color:green;}
 .row0, .row0 a{color:#FFFFFF;}
 .row1{color:#FFFFFF; background-color:rgba(0,0,0,.6);}
 .row2{color:#FFFFFF; background-color:#222222;}
-.row3{color:#7A7A7A; background-color:#FFFFFF;}
-.row4{color:#7A7A7A; background-color:#F7F7F7;}
-.row5, .row5 a{color:#7A7A7A; background-color:#FFFFFF;}
+.row3{color:#000000; background-color:#FFFFFF;}
+.row4{color:#000000; background-color:#F7F7F7;}
+.row5, .row5 a{color:#000000; background-color:#FFFFFF;}
 
 .row3 .heading, .row4 .heading{color:#121212;}
 
