@@ -72,7 +72,7 @@
           <div class="fl_left">
             <ul class="nospace">
               <!-- Contato -->
-              <li><i class="fa fa-phone"></i> +55 (11) xxxxx-xxxx</li>
+              <li><i class="fa fa-phone"></i> +55 (11) 95841-5296</li>
               <li><i class="fa fa-envelope-o"></i> trafficfunction@gmail.com</li>
               <!-- /Contato -->
             </ul>
@@ -107,10 +107,10 @@
               <!-- Parte Cadastro -->
               <li><a class="drop">Conta</a>
                 <ul>
-                  <li><a href="../pages/sistemaPerfil/contaUsuario.php">Perfil</a></li>
-                  <li><a href="form_login.html">Login</a></li>
-                  <li><a href="form_cadastro.html">Cadastrar</a></li>
-                  <li><a href="logoff.php">Sair</a></li>
+                  <li><a href="contaUsuario.php">Perfil</a></li>
+                  <li><a href="../../sistemaLogin/form_login.html">Login</a></li>
+                  <li><a href="../../sistemaLogin/form_cadastro.html">Cadastrar</a></li>
+                  <li><a href="../../sistemaLogin/logoff.php">Sair</a></li>
                 </ul>
               </li>
               <!-- /Parte Cadastro -->
