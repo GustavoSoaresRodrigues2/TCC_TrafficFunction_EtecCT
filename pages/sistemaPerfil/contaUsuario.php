@@ -9,10 +9,13 @@
     }
 ?>
 <!DOCTYPE html>
-<html lang="br">
+<html lang="pt-br">
   <head>
-    <title>Perfil</title>
+    <title>TF | Perfil</title>
     <meta charset="utf-8">
+    <meta name="author" content="TrafficFunction">
+    <meta name="description" content="Perfil de usuarios logados">
+    <meta name="keywords" content="transito, semaforos, mapa, tcc, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link href="../../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
     <style>
