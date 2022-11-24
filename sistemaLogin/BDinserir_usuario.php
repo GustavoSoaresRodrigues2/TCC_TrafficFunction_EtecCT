@@ -1,6 +1,6 @@
 <?php 
   //Conexão com o Banco de Dados
-	require "conectar.php";
+	require "BDconectar.php";
 
 	//Recupera os dados dos campos
 	$nome = $_POST['Nome'];
@@ -19,10 +19,8 @@
 		    $msg = "Houve um erro! Veja o último usuario cadastrado com sucesso.";
 	}
 ?>
-
 <!DOCTYPE html>
 <html>
-
 	<head>
 		<TITLE>TF | Cadastrando</TITLE>
 		<META charset="UTF-8">
@@ -112,7 +110,7 @@
                   <li><a href="../pages/sistemaPerfil/contaUsuario.php">Perfil</a></li>
                   <li><a href="form_login.html">Login</a></li>
                   <li><a href="form_cadastro.html">Cadastrar</a></li>
-                  <li><a href="logoff.php">Sair</a></li>
+                  <li><a href="BDlogoff.php">Sair</a></li>
                 </ul>
               </li>
               <!-- /Parte Cadastro -->
@@ -165,13 +163,12 @@
               Rua &amp; nº, São Paulo, Cidade Tiradentes
               </address>
             </li>
-            <li><i class="fa fa-phone"></i> +55 (11) xxxxx-xxxx</li>
+            <li><i class="fa fa-phone"></i> +55 (11) 95841-5296</li>
             <li><i class="fa fa-envelope-o"></i> trafficfunction@gmail.com</li>
           </ul>
           <ul class="faico clear">
             <li><a class="faicon-facebook" href="#"><i class="fa fa-facebook"></i></a></li>
             <li><a class="faicon-twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-            <li><a class="faicon-dribble" href="#"><i class="fa fa-dribbble"></i></a></li>
             <li><a class="faicon-linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
           </ul>
         </div>
