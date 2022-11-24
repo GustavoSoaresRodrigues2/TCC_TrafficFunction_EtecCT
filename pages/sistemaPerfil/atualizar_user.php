@@ -1,6 +1,6 @@
 <?php
     //Conexão com o Banco de Dados
-	require "../../sistemaLogin/conectar.php";
+	require "../../sistemaLogin/BDconectar.php";
 
     //Iniciar a sessão que foi aberta
     session_start();
@@ -36,7 +36,7 @@
             $mensagem = "Houve um erro!<br> Aguarde ...";
     }
     
-    require "../../sistemaLogin/desconectar.php";
+    require "../../sistemaLogin/BDdesconectar.php";
 
     echo $mensagem;
 ?>
