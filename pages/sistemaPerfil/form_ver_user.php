@@ -1,18 +1,17 @@
 <?php 
 	//Conexão com o Banco de Dados
-	require "../../sistemaLogin/conectar.php";
+	require "../../sistemaLogin/BDconectar.php";
         
     //Iniciar a sessão que foi aberta
     session_start();
 
     //Se o usuario não estiver logado manda ele para o formulario de login
     if ($_SESSION["Login"] != "SIM") {
-        header("Location: ../../sistemaLogin/form_login.html");
+        header("Location: ../../sistemaLogin/BDform_login.html");
     }
 ?>
-
 <!DOCTYPE html>
-<html lang="br">
+<html lang="pt-br">
     
   <head>
     <title>TF | Atualização</title>
@@ -23,12 +22,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link href="../../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
     <style type="text/css">
-
         h1, p {
           margin-left: 9%;
           margin-right: 9%;
         }
-
         .form_cadastro{
             width: 80%;
             height: 100%;
@@ -97,9 +94,9 @@
               <!-- Parte Guia -->
               <li><a class="drop">Guias</a>
                 <ul>
-                  <li><a href="../pages/quemSomos.html">Quem Somos?</a></li>
-                  <li><a href="../pages/mapaInflacoes.html">Mapa de infrações</a></li>
-                  <li><a href="../pages/sistemaComentar/form_comentario.php">Comentários</a></li>
+                  <li><a href="../../pages/quemSomos.html">Quem Somos?</a></li>
+                  <li><a href="../../pages/mapaInflacoes.html">Mapa de infrações</a></li>
+                  <li><a href="../../pages/sistemaComentar/form_comentario.php">Comentários</a></li>
                 </ul>
               </li>
               <!-- /Parte Guia -->
@@ -108,9 +105,9 @@
               <li><a class="drop">Conta</a>
                 <ul>
                   <li><a href="contaUsuario.php">Perfil</a></li>
-                  <li><a href="../../sistemaLogin/form_login.html">Login</a></li>
-                  <li><a href="../../sistemaLogin/form_cadastro.html">Cadastrar</a></li>
-                  <li><a href="../../sistemaLogin/logoff.php">Sair</a></li>
+                  <li><a href="form_login.html">Login</a></li>
+                  <li><a href="form_cadastro.html">Cadastrar</a></li>
+                  <li><a href="BDlogoff.php">Sair</a></li>
                 </ul>
               </li>
               <!-- /Parte Cadastro -->
@@ -134,7 +131,7 @@
 			    $codigo = $_GET['cod']; //Função GET do php
 
 			    //Conexão com o bd
-                require "../../sistemaLogin/conectar.php";
+                require "../../sistemaLogin/BDconectar.php";
 
                 $sql = "SELECT * FROM dados_usuarios WHERE Email = '" . $_SESSION['emailUser'] . "'";
 
@@ -143,14 +140,14 @@
                 $membro = mysqli_fetch_array($dados);
                 //como retorna apenas um registro não é necessario a utilização do while
 
-                require "../../sistemaLogin/desconectar.php";
+                require "../../sistemaLogin/BDdesconectar.php";
 
                 $msg_body = "<p align = 'right'>Login feito por " . $_SESSION["nomeUser"] . "</p>";
             ?>
             <!-- Form Cadastro -->
             <center>
             <div class="form_cadastro">
-                <h1>FORMULÁRIO DE ATUALIZAÇÃO</h1>
+                <h1>Formulário De Atualização</h1>
                 <form action="atualizar_user.php" method="post"> 
                 <div class="txtformL">
                     <label for="Nome">Nome: <span>*</span></label>
@@ -204,13 +201,12 @@
               Rua &amp; nº, São Paulo, Cidade Tiradentes
               </address>
             </li>
-            <li><i class="fa fa-phone"></i> +55 (11) xxxxx-xxxx</li>
+            <li><i class="fa fa-phone"></i> +55 (11) 95841-5296</li>
             <li><i class="fa fa-envelope-o"></i> trafficfunction@gmail.com</li>
           </ul>
           <ul class="faico clear">
             <li><a class="faicon-facebook" href="#"><i class="fa fa-facebook"></i></a></li>
             <li><a class="faicon-twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-            <li><a class="faicon-dribble" href="#"><i class="fa fa-dribbble"></i></a></li>
             <li><a class="faicon-linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
           </ul>
         </div>
