@@ -1,8 +1,8 @@
 <?php
     //Conexão com o Banco de Dados
-	require "../../sistemaLogin/conectar.php";
+	require "../../sistemaLogin/BDconectar.php";
     //Iniciar a sessão que foi aberta
-    session_start();
+    session_save_path("/tmp"); session_start();
     //Se o usuario não estiver logado manda ele para o formulario de login
     if($_SESSION["Login"] != "SIM") {
         header("Location: ../../sistemaLogin/form_login.html");
@@ -41,20 +41,16 @@
           </div>
         </div>
       </div>
-      
       <!-- NavBar -->
       <div class="wrapper row1">
         <header id="header" class="hoc clear"> 
           <div id="logo" class="fl_left">
-
             <!-- LogoImagem -->
             <h1 id="logo_top"><a href="../../index.html"><img src="../../images/logo_trafficfunction.png"></a></h1>
             <!-- /LogoImagem -->
-
           </div>
           <nav id="mainav" class="fl_right">
             <ul class="clear">
-
               <li><a href="../../index.html">Página Inicial</a></li>
 
               <!-- Parte Guia -->
@@ -73,7 +69,7 @@
                   <li><a href="contaUsuario.php">Perfil</a></li>
                   <li><a href="../../sistemaLogin/form_login.html">Login</a></li>
                   <li><a href="../../sistemaLogin/form_cadastro.html">Cadastrar</a></li>
-                  <li><a href="../../sistemaLogin/logoff.php">Sair</a></li>
+                  <li><a href="../../sistemaLogin/BDlogoff.php">Sair</a></li>
                 </ul>
               </li>
               <!-- /Parte Cadastro -->
@@ -84,13 +80,13 @@
       </div>
       <!-- /NavBar -->
     </div>
-    <!-- End Top Background Image Wrapper -->
 
+    <!-- End Top Background Image Wrapper -->
     <div class="wrapper row5">
       <main class="hoc container clear"> 
         <!-- Parte Esquerda -->
         <div class="sidebar one_quarter first">
-        <!-- Perfil pessoa -->
+            <!-- Perfil pessoa -->
             <nav class="sdb_holder">
             <?php
                 echo "<h6>" . $_SESSION['nomeUser'] . "</h6>";
@@ -103,35 +99,34 @@
                    //Exibimos as informações          
                     echo "
                         <table>
-                            <tr>
-                                <td>
-                                    E-mail: ". $linha['Email'] ."
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                   Contatos: ". $linha['Telefone'] ."
-                                </td>
-                            </tr>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <img src='mail.svg'> ". $linha['Email'] ."
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <img src='phone.svg'> ". $linha['Telefone'] ."
+                                    </td>
+                                </tr>
+                            </tbody>
                         </table>
                         ";
-                    
                     }
-
                 echo "<a class='btn' value='editar-pefil' href=form_ver_user.php?codigo=" . $_SESSION['codUser'] . ">Editar Perfil</a>";
                 
                 //Encerra conexão
-                require "../../sistemaLogin/desconectar.php";       
-            ?>
-                    
+                require "../../sistemaLogin/BDdesconectar.php";       
+            ?>        
             </nav>
-        <!-- / Perfil pessoa -->
+            <!-- / Perfil pessoa -->
         </div>
-        <!-- Parte Esquerda -->
+        <!-- / Parte Esquerda -->
         <div class="content three_quarter"> 
-            <!-- Comentario sobre ela msm -->
-  
-          <!-- / Comentario sobre ela msm -->
+            <!-- Tabela ocorrencias -->
+
+            <!-- / Tabela ocorrencias -->
         </div>
       </main>
     </div>
@@ -152,13 +147,12 @@
               Rua &amp; nº, São Paulo, Cidade Tiradentes
               </address>
             </li>
-            <li><i class="fa fa-phone"></i> +55 (11) xxxxx-xxxx</li>
+            <li><i class="fa fa-phone"></i> +55 (11) 95841-5296</li>
             <li><i class="fa fa-envelope-o"></i> trafficfunction@gmail.com</li>
           </ul>
           <ul class="faico clear">
             <li><a class="faicon-facebook" href="#"><i class="fa fa-facebook"></i></a></li>
             <li><a class="faicon-twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-            <li><a class="faicon-dribble" href="#"><i class="fa fa-dribbble"></i></a></li>
             <li><a class="faicon-linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
           </ul>
         </div>
