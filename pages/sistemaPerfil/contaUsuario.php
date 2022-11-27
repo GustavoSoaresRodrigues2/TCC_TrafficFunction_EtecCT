@@ -1,9 +1,8 @@
 <?php
-    //Conexão com o Banco de Dados
 	require "../../sistemaLogin/BDconectar.php";
-    //Iniciar a sessão que foi aberta
+    
     session_save_path("/tmp"); session_start();
-    //Se o usuario não estiver logado manda ele para o formulario de login
+    
     if($_SESSION["Login"] != "SIM") {
         header("Location: ../../sistemaLogin/form_login.html");
     }
@@ -90,15 +89,15 @@
             <nav class="sdb_holder">
             <?php
                 echo "<h6>" . $_SESSION['nomeUser'] . "</h6>";
-                //Faz uma consulta a dados_usuarios e retorna a linha que contem o cliente digitado
+                
                 $strSQL = "SELECT cod, Email, Telefone FROM dados_usuarios WHERE Email = '" . $_SESSION['emailUser'] . "'";
-                //Executa a consulta(query) a variavel $consulta contem o resultado da consulta
+                
                 $consulta = mysqli_query($conexao, $strSQL);
-                //Cada linha vai para um array ($row) usando mysql_fetch_array
+               
                 while($linha = mysqli_fetch_array($consulta)) {        
                    //Exibimos as informações          
                     echo "
-                        <table>
+                        <table class='tab_perfil'>
                             <tbody>
                                 <tr>
                                     <td>
@@ -111,23 +110,45 @@
                                     </td>
                                 </tr>
                             </tbody>
-                        </table>
-                        ";
+                        </table>";
                     }
                 echo "<a class='btn' value='editar-pefil' href=form_ver_user.php?codigo=" . $_SESSION['codUser'] . ">Editar Perfil</a>";
-                
-                //Encerra conexão
-                require "../../sistemaLogin/BDdesconectar.php";       
-            ?>        
+            ?>
+
             </nav>
             <!-- / Perfil pessoa -->
         </div>
-        <!-- / Parte Esquerda -->
-        <div class="content three_quarter"> 
-            <!-- Tabela ocorrencias -->
+            <div class="content three_quarter">
+            <?php
+                    //<!-- Tabela ocorrencias -->
+                    $strSQL = "SELECT ID_Ocorrencia, Rua, CEP, Ocorrencia, Descricao, Observacao, Data FROM tabela_ocorrencias WHERE codUser = '" . $_SESSION['codUser'] . "'";
+                    
+                    echo "<table class='tab_reportes' border = '1' align='center'><tr><td>ID</td><td>Rua</td><td>CEP</td><td>Ocorrencia</td><td>Descricao</td><td>Observação</td><td>Data</td><td>Editar</td><td>Excluir</td></tr>";
+                    
+                    $consulta = mysqli_query($conexao, $strSQL);
 
-            <!-- / Tabela ocorrencias -->
-        </div>
+                    while($linha = mysqli_fetch_array($consulta)) {
+                            echo "<tr>";
+                            echo "<td>" . $linha['ID_Ocorrencia'] . "</td>";
+                            echo "<td>" . $linha['Rua'] . "</td>";
+                            echo "<td>" . $linha['CEP'] . "</td>";
+                            echo "<td>" . $linha['Ocorrencia'] . "</td>";
+                            echo "<td>" . $linha['Descricao'] . "</td>";
+                            echo "<td>" . $linha['Observacao'] . "</td>";
+                            echo "<td>" . $linha['Data'] . "</td>";
+                            echo "<td>
+                            <a href = form_ver_ocorrencia.php?codigo=" . $linha['ID_Ocorrencia'] . ">
+                            <img src = 'ibagens/icon_editar.jpg' width = '30px'>
+                            </a></td>";
+                            echo "<td><a href = 'bd_excluir_usuario.php'><img src = 'ibagens/icone_excluir.png' width = '30px'></a></td>";
+                            echo "</tr>";	
+                            }
+                            echo "</table";
+                    //<!-- /Tabela ocorrencias -->
+
+                require "../../sistemaLogin/BDdesconectar.php";       
+            ?>
+            </div>
       </main>
     </div>
     <!-- FOOTER -->
